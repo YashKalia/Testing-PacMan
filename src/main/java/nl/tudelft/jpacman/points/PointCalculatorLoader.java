@@ -21,8 +21,9 @@ public class PointCalculatorLoader {
     public PointCalculator load() {
 
         try {
-            if(clazz==null)
+            if (clazz == null) {
                 clazz = loadClassFromFile();
+            }
 
             return (PointCalculator) clazz.newInstance();
         } catch (Exception e) {
@@ -39,13 +40,14 @@ public class PointCalculatorLoader {
             prop.load(getClass().getClassLoader().getResourceAsStream("scorecalc.properties"));
             String strategyToLoad = prop.getProperty("scorecalculator.name");
 
-            if(strategyToLoad.equals("DefaultPointCalculator"))
+            if (strategyToLoad.equals("DefaultPointCalculator")) {
                 return DefaultPointCalculator.class;
+            }
 
             return loadClass(strategyToLoad);
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Could not dinamically load the points calculator class. Something is really wrong with your JPacman. Ask a TA.");
+            System.err.println("Could not dinamically load the points calculator class. Ask a TA.");
             System.exit(-1);
             return null; // dead code
         }
