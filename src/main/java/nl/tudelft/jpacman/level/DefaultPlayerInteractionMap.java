@@ -19,17 +19,19 @@ public class DefaultPlayerInteractionMap implements CollisionMap {
 
     private PointCalculator pointCalculator;
 
+    private final CollisionMap collisions = defaultCollisions();
+
     /**
      * Create a simple player-based collision map, informing the
      * point calculator about points to be added.
-     * @param pointCalculator Strategy for calculating points.
+     *
+     * @param pointCalculator
+     *             Strategy for calculating points.
      */
     public DefaultPlayerInteractionMap(PointCalculator pointCalculator) {
         this.pointCalculator = pointCalculator;
     }
 
-
-    private final CollisionMap collisions = defaultCollisions();
 
     @Override
     public void collide(Unit mover, Unit movedInto) {
@@ -53,7 +55,7 @@ public class DefaultPlayerInteractionMap implements CollisionMap {
 
         collisionMap.onCollision(Player.class, Pellet.class,
             (player, pellet) -> {
-                pointCalculator.foundAPellet(player, pellet);
+                pointCalculator.consumedAPellet(player, pellet);
                 pellet.leaveSquare();
             });
         return collisionMap;

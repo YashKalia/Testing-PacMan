@@ -47,7 +47,7 @@ class NavigationTest {
         PacManSprites sprites = new PacManSprites();
         LevelFactory lfact = new LevelFactory(sprites,
             new GhostFactory(sprites),
-            Mockito.mock(PointCalculator.class));
+            mock(PointCalculator.class));
         parser = new MapParser(lfact, new BoardFactory(sprites));
     }
 
