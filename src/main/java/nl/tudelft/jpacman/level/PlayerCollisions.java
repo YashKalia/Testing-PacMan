@@ -59,6 +59,7 @@ public class PlayerCollisions implements CollisionMap {
      */
     public void playerVersusGhost(Player player, Ghost ghost) {
         player.setAlive(false);
+        player.setKiller(ghost);
     }
 
     /**
