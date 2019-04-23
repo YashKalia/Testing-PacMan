@@ -13,7 +13,7 @@ import java.lang.RuntimeException;
  * A brand new points calculator, that does more than
  * just adding points.
  */
-public class AmazingPointCalculator implements PointCalculator {
+public class AmazingPC implements PointCalculator {
 
     private int pelletsEaten;
        
