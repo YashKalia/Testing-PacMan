@@ -27,6 +27,8 @@ class OccupantTest {
     @BeforeEach
     void setUp() {
         unit = new BasicUnit();
+        targetsquare=new BasicSquare();
+        another=new BasicSquare();
     }
 
     /**
