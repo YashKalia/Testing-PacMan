@@ -1,10 +1,11 @@
 package nl.tudelft.jpacman.board;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test suite to confirm that {@link Unit}s correctly (de)occupy squares.
@@ -27,8 +28,8 @@ class OccupantTest {
     @BeforeEach
     void setUp() {
         unit = new BasicUnit();
-        targetsquare=new BasicSquare();
-        another=new BasicSquare();
+        targetsquare = new BasicSquare();
+        another = new BasicSquare();
     }
 
     /**
@@ -36,7 +37,8 @@ class OccupantTest {
      */
     @Test
     void noStartSquare() {
-        Assertions.assertFalse(unit.hasSquare());
+
+        assertFalse(unit.hasSquare());
     }
 
     /**
@@ -46,7 +48,7 @@ class OccupantTest {
     @Test
     void testOccupy() {
         unit.occupy(targetsquare);
-        Assertions.assertTrue(unit.getSquare().equals(targetsquare));
+        assertEquals(unit.getSquare(), targetsquare);
 
     }
 
@@ -57,8 +59,8 @@ class OccupantTest {
     @Test
     void testReoccupy() {
         unit.occupy(targetsquare);
-        Assertions.assertTrue(unit.getSquare().equals(targetsquare));
+        assertTrue(unit.getSquare().equals(targetsquare));
         unit.occupy(another);
-        Assertions.assertTrue(unit.getSquare().equals(another));
+        assertTrue(unit.getSquare().equals(another));
     }
 }
