@@ -10,4 +10,9 @@ Instead of exhaustive testing, we should write a sufficient number of effective 
 information about the quality of the project that we need. 
 
 ###### Exercise 4 :
+The pesticide paradox relates the ability of insects/pests to develop a natural immunity against pesticides used to kill them if the same pesticide is used on them repeatedly,
+to the fact that if the same tests are run repeatedly and errors/failures are fixed then the code being tested similarly develops immunity against the tests and only few failures are encountered.
+This gives the impression that the software is working great since none of the tests are failing and the subtler bugs in the actual test methods are henceforth forgotten which can cause problems later on.
+(Implication->)It is therefore important to keep regularly developing new test methods to find additional defects since testers cannot rely on the same test cases throughout the development even if new interconnectins are aded in the software.
+
 ###### Exercise 5 :
