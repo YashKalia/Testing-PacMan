@@ -22,7 +22,7 @@ public class DirectionTest {
     }
 
     /**
-     * South method test.
+     * Checks if we get the correct delta when moving south?
      */
     @Test
     void testSouth() {
@@ -31,7 +31,7 @@ public class DirectionTest {
     }
 
     /**
-     * East method test.
+     * Checks if we get the correct delta when moving east?
      */
     @Test
     void testEast() {
@@ -40,7 +40,7 @@ public class DirectionTest {
     }
 
     /**
-     * West method test.
+     * Checks if we get the correct delta when moving west?
      */
     @Test
     void testWest() {
