@@ -11,4 +11,13 @@ the unit never moves in he new direction and does not gain the points that he wo
 expecting the score to now be equals to a 10 but it was still a 0.Given that the test assertion fails it implies that either the points/score of the unit is
 not adding up properly or that the unit dud not move on the board as expected.
 
+Excercise-10
+Part-2
+  Good Weather Cases-
+  1.When Clyde is far from pacman's location-then he must move towards pacman's current location.
+  2.When Clyde is close to pacman's location-then he must run away from pacman.
+  
+  Bad Weather Cases-
+  1.When Clyde is far from pacman's location-then he must not  move away pacman's current location.
+  2.When Clyde is close to pacman's location-then he must not move towards pacman.
 
