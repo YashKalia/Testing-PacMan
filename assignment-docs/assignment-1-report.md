@@ -16,11 +16,13 @@ not adding up properly or that the unit did not move on the board as expected.
 
 After making the getDeltaX method return dy instead of dx, running the LauncherSmokeTest with Jacoco coverage fails.
 The coverage lets us see that the getDeltaX method is hit by the LauncherSmokeTest.
+
 <img src = "https://media.discordapp.net/attachments/546026199197941775/573955038901305345/SQT_exercise_8_-_1.PNG"> 
 
 We can also see that the createBoard method which calls getDeltaX in BoardFactory is hit. 
 It seems that in the process of creating a board in the test, 
 squares on the board will not have the correct neighbours, see line 49 of createBoard method (because getDeltaX returns dy). 
+
 <img src = "https://media.discordapp.net/attachments/546026199197941775/573955077119803392/SQT_exercise_8_-_2.PNG" length = 75>
 
 This causes the actual points to be 0 instead of the expected 10 which is the reason  why the test fails. 
