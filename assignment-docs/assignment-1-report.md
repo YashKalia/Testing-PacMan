@@ -9,9 +9,10 @@ Excercise-7
 Yes it is covered in the smoke test.The smokeTest fails because if we comment out the line of code that invokes the move method in the Level class then
 the unit never moves in he new direction and does not gain the points that he would have gained if he had gained-that is why the assertion failed as it was
 expecting the score to now be equals to a 10 but it was still a 0.Given that the test assertion fails it implies that either the points/score of the unit is
-not adding up properly or that the unit dud not move on the board as expected.
+not adding up properly or that the unit did not move on the board as expected.
 
 Excercise-10
+
 Part-2
   Good Weather Cases-
   1.When Clyde is far from pacman's location-then he must move towards pacman's current location.
@@ -21,3 +22,38 @@ Part-2
   1.When Clyde is far from pacman's location-then he must not  move away pacman's current location.
   2.When Clyde is close to pacman's location-then he must not move towards pacman.
 
+Exercise-14
+
+One solution is to add class attributes in the test class and use the @BeforeEach annotation and the setUp() method. 
+The code that you see that is repeated in the Arrange part of tests can be in the setUp method definition which will be invoked before each test.
+
+Another solution is to define some helper-function without @BeforeEach in the test class that handles the specific Arrange part of certain unit tests which will be invoked at the start of unit tests. The advantage of this: you can choose which tests will invoke this helper method, 
+so you have more control than when using @BeforeEach. The disadvantage: there is minimal repetition in calling the helper method in tests.
+
+Exercise-15
+
+The goal of unit tests is to test each component in isolation. 
+You want clean instances for each test, so each of them should not depend on each other and not have to work with possibly changed test data.
+So the tests shouldn't be interfered by, but should be independent of another test. 
+This can be achieved by using the setUp() method to instantiate clean instances.  
+A consequence of this independence is that tests will be more repeatable: it always returns the same result if you do not change anything in between runs.   
+Furthermore, using setUp() helps to minimize code repetition as mention in the answer to exercise 14.
+
+
+Exercise-16
+
+When a test fails assertEquals gives an error message that says that a test failed because an expected value/instance differs from 
+what was the actual value/instance, which is more useful for debugging than the error message that assertTrue gives: expected True but was False.
+
+Another advantage of assertEquals is that you can use it for both primitive and reference types, 
+while for assertTrue there is the risk that you might use ""=="" instead of equals() for comparing reference types which might be wrong.
+
+Exercise-17
+
+The private method in a class are called within public methods, 
+so when you test public methods you are indirectly testing private methods. 
+In most cases, there should not be a need to test a private method. 
+Private methods are an implementation detail so usually private methods shouldn't exist in isolation. 
+A private method is an implementation detail that should be hidden to the users of the class and cannot be called in a test class. 
+Testing private methods breaks encapsulation. If private methods have enough complexity that must be tested, 
+we should put them in another class to keep high cohesion, a class should have only one purpose.
