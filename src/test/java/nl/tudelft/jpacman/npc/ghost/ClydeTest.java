@@ -94,6 +94,9 @@ public class ClydeTest {
 
     }
 
+    /**
+     * Belongs to the on case when distance b/w Player and Clyde is exactly 8.
+     */
     @Test
     void Exactly8SpacesApartGoodWeatherCase() {
         text.add("#P       C#");
@@ -131,6 +134,9 @@ public class ClydeTest {
         assertNull(thisisclyde);
     }
 
+    /**
+     * Belongs to the partition in which player is not on board.
+     */
     @Test
     void PlayerNotOnBoardBadWeatherTest() {
         text.add("##B     C##");
@@ -140,6 +146,9 @@ public class ClydeTest {
 
     }
 
+    /**Belongs to the partition in which there is no path between player and clyde.
+     *
+     */
     @Test
     void Thereisnopath() {
         text.add("##              P  B #   C##");
