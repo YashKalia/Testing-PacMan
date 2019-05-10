@@ -55,6 +55,40 @@ Part-2
   1.When Clyde is far from pacman's location-then he must not  move away pacman's current location.
   2.When Clyde is close to pacman's location-then he must not move towards pacman.
 
+
+####Exercise-11
+
+Part-2 
+To make sure that the Optional<Direction> nextAiMove() method of Inky object works, the following *requirements/conditions* need to be met:
+  1. a Player is on the same Board as Inky
+  2. Blinky is on  the same  Board as Inky
+  3. There exists a (shortest and not null) path that can be taken to get to the square that is 2 Squares of the Player from 
+     the square that Blinky is occupying.
+  4. There exists a (shortest and not null) path that Inky can take to the *destination* that is supposed to go to 
+     (see image below for information about the *destination*) 
+
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/574250657280950273/SQT_a1e11.PNG" length = 75>
+
+Some good weather behaviour cases are:
+  1. All of the *requirements/conditions* are met and Inky is alongside Blinky, while Blinky is behind Player. 
+     The expected behaviour of Inky is that Inky should move towards Player.
+  2. All of the *requirements/conditions* are met and Inky is ahead of Player, while Blinky is behind Player.
+     The expected behaviour of Inky is that Inky should move away Player
+
+Bad weather behaviour cases are all cases where at least one or all of the conditions 1 upto and including 4 
+from from *requirements/conditions* are False.
+
+Also another 2 bad weather cases :
+  1. All of the *requirements/conditions* are met and Inky is alongside Blinky, while Blinky is behind Player. 
+     The expected behaviour of Inky is that Inky should not move away from Player but try to approach player.
+  2. All of the *requirements/conditions* are met and Inky is ahead of Player, while Blinky is behind Player. 
+     The expected behaviour of Inky is that Inky should not move towards Player but move away from player.
+
+
+
+
+
+
 Exercise-14
 
 One solution is to add class attributes in the test class and use the @BeforeEach annotation and the setUp() method. 
@@ -90,3 +124,4 @@ Private methods are an implementation detail so usually private methods shouldn'
 A private method is an implementation detail that should be hidden to the users of the class and cannot be called in a test class. 
 Testing private methods breaks encapsulation. If private methods have enough complexity that must be tested, 
 we should put them in another class to keep high cohesion, a class should have only one purpose.
+
