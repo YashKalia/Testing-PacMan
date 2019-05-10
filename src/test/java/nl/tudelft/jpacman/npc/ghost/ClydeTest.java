@@ -27,32 +27,32 @@ public class ClydeTest {
     BoardFactory boardFactory;
 
     @BeforeEach
-    void SetUp(){
-        boardFactory=new BoardFactory(new PacManSprites());
-        ghostFactory=new GhostFactory(new PacManSprites());
+    void SetUp() {
+        boardFactory = new BoardFactory(new PacManSprites());
+        ghostFactory = new GhostFactory(new PacManSprites());
         levelFactory = new LevelFactory(new PacManSprites(), new GhostFactory(new PacManSprites()), new DefaultPointCalculator());
-        ghostMapParser=new GhostMapParser(levelFactory,boardFactory,ghostFactory);
+        ghostMapParser = new GhostMapParser(levelFactory, boardFactory, ghostFactory);
         PlayerFactory playerFactory = new PlayerFactory(new PacManSprites());
         player = playerFactory.createPacMan();
-        text=new ArrayList<String>();
+        text = new ArrayList<String>();
     }
 
     /*
     Tests if Clyde moves toward PacMan when the distance is more than 8.
      */
     @Test
-    void farawaygoodweatherTest(){
+    void farawaygoodweatherTest() {
         text.add("##############");
         text.add("#P.........C #");
         text.add("##############");
-        Level level=ghostMapParser.parseMap(text);
+        Level level = ghostMapParser.parseMap(text);
         System.out.println(level.getBoard().getHeight());
         System.out.println(level.getBoard().getWidth());
         player.setDirection(Direction.EAST);
         level.registerPlayer(player);
         System.out.println(player.getSquare());
-        Clyde thisisclyde=Navigation.findUnitInBoard(Clyde.class,level.getBoard());
-        assertEquals( Optional.of(Direction.WEST),thisisclyde.nextAiMove());
+        Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertEquals(Optional.of(Direction.WEST), thisisclyde.nextAiMove());
 
     }
     //###p c###
@@ -63,11 +63,11 @@ public class ClydeTest {
     @Test
     void farawaybadweatherTest() {
         text.add("#P          C#");
-        Level level=ghostMapParser.parseMap(text);
+        Level level = ghostMapParser.parseMap(text);
 
         level.registerPlayer(player);
-        Clyde thisisclyde=Navigation.findUnitInBoard(Clyde.class,level.getBoard());
-        assertNotEquals(thisisclyde.nextAiMove(),Direction.EAST);
+        Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertNotEquals(thisisclyde.nextAiMove(), Direction.EAST);
 
     }
 
@@ -85,12 +85,12 @@ public class ClydeTest {
         text.add("#########");
 
         player.setDirection(Direction.NORTH);
-        Level level=ghostMapParser.parseMap(text);
+        Level level = ghostMapParser.parseMap(text);
         level.registerPlayer(player);
 
-        Clyde thisisclyde=Navigation.findUnitInBoard(Clyde.class,level.getBoard());
+        Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         System.out.println(Navigation.findNearest(Player.class, thisisclyde.getSquare()));
-        assertEquals(thisisclyde.nextAiMove(),Optional.of(Direction.NORTH));
+        assertEquals(thisisclyde.nextAiMove(), Optional.of(Direction.NORTH));
 
     }
 
@@ -100,10 +100,10 @@ public class ClydeTest {
     @Test
     void Exactly8SpacesApartGoodWeatherCase() {
         text.add("#P       C#");
-        Level level=ghostMapParser.parseMap(text);
+        Level level = ghostMapParser.parseMap(text);
         level.registerPlayer(player);
         Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
-        assertEquals(clyde.nextAiMove(),Optional.of(Direction.EAST));
+        assertEquals(clyde.nextAiMove(), Optional.of(Direction.EAST));
     }
 
     /*
@@ -112,13 +112,13 @@ public class ClydeTest {
     @Test
     void closebybadweatherTest() {
         text.add("#P    C#");
-        Level level=ghostMapParser.parseMap(text);
+        Level level = ghostMapParser.parseMap(text);
 
         level.registerPlayer(player);
-        Clyde thisisclyde=Navigation.findUnitInBoard(Clyde.class,level.getBoard());
+        Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         System.out.println(Navigation.findNearest(Player.class, thisisclyde.getSquare()));
         System.out.println(thisisclyde.nextAiMove());
-        assertNotEquals(Optional.of(Direction.WEST),thisisclyde.nextAiMove());
+        assertNotEquals(Optional.of(Direction.WEST), thisisclyde.nextAiMove());
 
     }
 
@@ -126,11 +126,11 @@ public class ClydeTest {
      * Bad weather case tht Clyde is not on Board.
      */
     @Test
-    void ClydeNotOnBoardBadWeatherTest(){
+    void ClydeNotOnBoardBadWeatherTest() {
         text.add("#P    I#");
-        Level level=ghostMapParser.parseMap(text);
+        Level level = ghostMapParser.parseMap(text);
         level.registerPlayer(player);
-        Clyde thisisclyde=Navigation.findUnitInBoard(Clyde.class,level.getBoard());
+        Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         assertNull(thisisclyde);
     }
 
@@ -142,29 +142,23 @@ public class ClydeTest {
         text.add("##B     C##");
         Level level = ghostMapParser.parseMap(text);
         Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
-        assertEquals(clyde.nextAiMove(),Optional.empty());
+        assertEquals(clyde.nextAiMove(), Optional.empty());
 
     }
 
-    /**Belongs to the partition in which there is no path between player and clyde.
-     *
+    /**
+     * Belongs to the partition in which there is no path between player and clyde.
      */
     @Test
     void Thereisnopath() {
         text.add("##              P  B #   C##");
-        Level level=ghostMapParser.parseMap(text);
+        Level level = ghostMapParser.parseMap(text);
         level.registerPlayer(player);
         Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
-        assertEquals(Optional.empty(),thisisclyde.nextAiMove());
+        assertEquals(Optional.empty(), thisisclyde.nextAiMove());
 
 
     }
-
-
-
-
-
-
 
 
 }
