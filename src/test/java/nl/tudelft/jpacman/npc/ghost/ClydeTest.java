@@ -2,12 +2,12 @@ package nl.tudelft.jpacman.npc.ghost;
 
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
-import nl.tudelft.jpacman.level.*;
-import nl.tudelft.jpacman.npc.Ghost;
+import nl.tudelft.jpacman.level.Level;
+import nl.tudelft.jpacman.level.LevelFactory;
+import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.level.PlayerFactory;
 import nl.tudelft.jpacman.points.DefaultPointCalculator;
-import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.sprite.PacManSprites;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,30 +15,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Test case for Clyde.
+ */
 public class ClydeTest {
-    GhostMapParser ghostMapParser;
-    Player player;
-    List<String> text;
+    private GhostMapParser ghostMapParser;
+    private Player player;
+    private List<String> text;
 
-    LevelFactory levelFactory;
-    GhostFactory ghostFactory;
-    BoardFactory boardFactory;
+    private LevelFactory levelFactory;
+    private GhostFactory ghostFactory;
+    private BoardFactory boardFactory;
 
+    /**
+     * SetUp method.
+     */
     @BeforeEach
-    void SetUp() {
+    void setUp() {
         boardFactory = new BoardFactory(new PacManSprites());
         ghostFactory = new GhostFactory(new PacManSprites());
-        levelFactory = new LevelFactory(new PacManSprites(), new GhostFactory(new PacManSprites()), new DefaultPointCalculator());
+        levelFactory = new LevelFactory(new PacManSprites(),
+            new GhostFactory(new PacManSprites()),
+            new DefaultPointCalculator());
         ghostMapParser = new GhostMapParser(levelFactory, boardFactory, ghostFactory);
         PlayerFactory playerFactory = new PlayerFactory(new PacManSprites());
         player = playerFactory.createPacMan();
         text = new ArrayList<String>();
     }
 
-    /*
-    Tests if Clyde moves toward PacMan when the distance is more than 8.
+
+    /**
+     * Tests if Clyde moves toward PacMan when the distance is more than 8.
      */
     @Test
     void farawaygoodweatherTest() {
@@ -57,8 +68,9 @@ public class ClydeTest {
     }
     //###p c###
 
-    /*
-    Tests if Clyde doesn't moves away from PacMan when the distance is more than 8.
+
+    /**
+     * Tests if Clyde doesn't moves away from PacMan when the distance is more than 8.
      */
     @Test
     void farawaybadweatherTest() {
@@ -71,9 +83,8 @@ public class ClydeTest {
 
     }
 
-
-    /*
-    Tests if Clyde runs away from PacMan when the distance is less than 8.
+    /**
+     * Tests if Clyde runs away from PacMan when the distance is less than 8.
      */
     @Test
     void closebygoodweatherTest() {
@@ -98,7 +109,7 @@ public class ClydeTest {
      * Belongs to the on case when distance b/w Player and Clyde is exactly 8.
      */
     @Test
-    void Exactly8SpacesApartGoodWeatherCase() {
+    void exactly8SpacesApartGoodWeatherCase() {
         text.add("#P       C#");
         Level level = ghostMapParser.parseMap(text);
         level.registerPlayer(player);
@@ -106,9 +117,10 @@ public class ClydeTest {
         assertEquals(clyde.nextAiMove(), Optional.of(Direction.EAST));
     }
 
-    /*
-     Tests if Clyde doesn't move toward PacMan when the distance is less than 8.
-      */
+
+    /**
+     * Tests if Clyde does not move toward Pacman if distance is less than 8.
+     */
     @Test
     void closebybadweatherTest() {
         text.add("#P    C#");
@@ -126,7 +138,7 @@ public class ClydeTest {
      * Bad weather case tht Clyde is not on Board.
      */
     @Test
-    void ClydeNotOnBoardBadWeatherTest() {
+    void clydeNotOnBoardBadWeatherTest() {
         text.add("#P    I#");
         Level level = ghostMapParser.parseMap(text);
         level.registerPlayer(player);
@@ -138,7 +150,7 @@ public class ClydeTest {
      * Belongs to the partition in which player is not on board.
      */
     @Test
-    void PlayerNotOnBoardBadWeatherTest() {
+    void playerNotOnBoardBadWeatherTest() {
         text.add("##B     C##");
         Level level = ghostMapParser.parseMap(text);
         Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
@@ -150,7 +162,7 @@ public class ClydeTest {
      * Belongs to the partition in which there is no path between player and clyde.
      */
     @Test
-    void Thereisnopath() {
+    void thereisnopath() {
         text.add("##              P  B #   C##");
         Level level = ghostMapParser.parseMap(text);
         level.registerPlayer(player);
