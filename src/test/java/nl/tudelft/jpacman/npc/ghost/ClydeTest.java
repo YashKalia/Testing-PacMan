@@ -57,11 +57,8 @@ public class ClydeTest {
         text.add("#P.........C #");
         text.add("##############");
         Level level = ghostMapParser.parseMap(text);
-        System.out.println(level.getBoard().getHeight());
-        System.out.println(level.getBoard().getWidth());
         player.setDirection(Direction.EAST);
         level.registerPlayer(player);
-        System.out.println(player.getSquare());
         Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         assertEquals(Optional.of(Direction.WEST), thisisclyde.nextAiMove());
 
@@ -100,7 +97,6 @@ public class ClydeTest {
         level.registerPlayer(player);
 
         Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
-        System.out.println(Navigation.findNearest(Player.class, thisisclyde.getSquare()));
         assertEquals(thisisclyde.nextAiMove(), Optional.of(Direction.NORTH));
 
     }
@@ -128,8 +124,6 @@ public class ClydeTest {
 
         level.registerPlayer(player);
         Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
-        System.out.println(Navigation.findNearest(Player.class, thisisclyde.getSquare()));
-        System.out.println(thisisclyde.nextAiMove());
         assertNotEquals(Optional.of(Direction.WEST), thisisclyde.nextAiMove());
 
     }
