@@ -7,6 +7,7 @@ import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.points.DefaultPointCalculator;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.sprite.PacManSprites;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ClydeTest {
     GhostMapParser ghostMapParser;
@@ -94,6 +94,15 @@ public class ClydeTest {
 
     }
 
+    @Test
+    void Exactly8SpacesApartGoodWeatherCase() {
+        text.add("#P       C#");
+        Level level=ghostMapParser.parseMap(text);
+        level.registerPlayer(player);
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertEquals(clyde.nextAiMove(),Optional.of(Direction.EAST));
+    }
+
     /*
      Tests if Clyde doesn't move toward PacMan when the distance is less than 8.
       */
@@ -110,7 +119,42 @@ public class ClydeTest {
 
     }
 
-    
+    /**
+     * Bad weather case tht Clyde is not on Board.
+     */
+    @Test
+    void ClydeNotOnBoardBadWeatherTest(){
+        text.add("#P    I#");
+        Level level=ghostMapParser.parseMap(text);
+        level.registerPlayer(player);
+        Clyde thisisclyde=Navigation.findUnitInBoard(Clyde.class,level.getBoard());
+        assertNull(thisisclyde);
+    }
+
+    @Test
+    void PlayerNotOnBoardBadWeatherTest() {
+        text.add("##B     C##");
+        Level level = ghostMapParser.parseMap(text);
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertEquals(clyde.nextAiMove(),Optional.empty());
+
+    }
+
+    @Test
+    void Thereisnopath() {
+        text.add("##              P  B #   C##");
+        Level level=ghostMapParser.parseMap(text);
+        level.registerPlayer(player);
+        Clyde thisisclyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertEquals(Optional.empty(),thisisclyde.nextAiMove());
+
+
+    }
+
+
+
+
+
 
 
 
