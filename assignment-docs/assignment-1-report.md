@@ -20,4 +20,19 @@ Part-2
   Bad Weather Cases-
   1.When Clyde is far from pacman's location-then he must not  move away pacman's current location.
   2.When Clyde is close to pacman's location-then he must not move towards pacman.
+  
+  
+ Excercise-12
+ 
+ | Varaiables | Condition       | Type   | Test Cases   |
+ |     x      |  >=0            |   on   |      t1      | 
+ |            |                 |   off  |      t2      | 
+ |            |                 |   in   |      t3      | 
+ |            |  <board.length  |   on   |      t4      | 
+ |            |                 |   off  |      t5      | 
+ |     y      |  >=0            |   on   |      t6      | 
+ |            |                 |   off  |      t7      | 
+ |            |                 |   in   |      t8      | 
+ |            |  <board.length  |   on   |      t9      | 
+ |            |                 |   off  |      t10     |
 
