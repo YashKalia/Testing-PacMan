@@ -29,6 +29,21 @@ This causes the actual points to be 0 instead of the expected 10 which is the re
 The problem is easier to understand with the help of Jacoco and IntelliJ 
 because with them we can check what methods are affected by the change in getDeltaX method.  
 
+####Exercise-9
+
+The board class has a double array of "Square" to simulate a board. 
+A unit object can occupy at most one of the squares in the double array of Squares which is a field of board object.
+Furthermore a unit object can also unoccupy a Square and to occupy another neighbouring Square. 
+The extensions of Unit class are Player, Pellet and Ghost all extensions of the Ghost class.
+The Level class has the following interesting attributes: 
+"board" - which is a Board object which is used to check remaining pellets on the board of a Level object in remainingPellets() method.
+"npcs" - which is a Map<Ghost, ScheduledExecutorService> is used for the movement of Ghost objects in stopNPCs() and startNPCs() methods.
+"players" - which is List<Player> and is used for checking if a player is alive and registering a player in a Level object in isAnyPlayerAlive() and registerPlayer(Player player) methods.
+The move() method in Level lets unit Object move on the board belonging to a level(npc and player) to another neighbouring Square.
+The method move() in the Game class allows for moving a Player object which is an extension of Unit class.
+All classes that extend from abstract Game class have an attribute which is an instance of the Level class 
+and override the abstract getLevel method from Game class.
+
 ####Exercise-10
 
 Part-2
