@@ -24,7 +24,11 @@ Part-2
   
  Excercise-12
  
- | Varaiables | Condition       | Type   | Test Cases   |
+
+ 
+  
+ | Varaiables | Condition |  Type   | Test Cases   |
+ | ------     | ------    | --------| ---------    |
  |     x      |  >=0            |   on   |      t1      | 
  |            |                 |   off  |      t2      | 
  |            |                 |   in   |      t3      | 
@@ -35,4 +39,5 @@ Part-2
  |            |                 |   in   |      t8      | 
  |            |  <board.length  |   on   |      t9      | 
  |            |                 |   off  |      t10     |
+
 
