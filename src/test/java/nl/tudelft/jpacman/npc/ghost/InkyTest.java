@@ -61,6 +61,19 @@ public class InkyTest {
     }
 
     /**
+     * This test case belongs to the partition of Inky is not on the board.
+     */
+    @Test
+    void testInkyNotOnBoard() {
+        text.add("##P     B##");
+        player.setDirection(Direction.EAST);
+        Level level = ghostMapParser.parseMap(text);
+        level.registerPlayer(player);
+        Inky inky = Navigation.findUnitInBoard(Inky.class, level.getBoard());
+        assertThat(inky).isNull();
+    }
+
+    /**
      * This test case belongs to the partition of Player is not on the same board as Inky.
      */
     @Test
