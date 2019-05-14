@@ -37,7 +37,7 @@ Part-2
  |     y      |  >=0            |   on   |      t6      | 
  |            |                 |   off  |      t7      | 
  |            |                 |   in   |      t8      | 
- |            |  <board.length  |   on   |      t9      | 
+ |            |  <board[0].length  |   on   |      t9      | 
  |            |                 |   off  |      t10     |
 
 
