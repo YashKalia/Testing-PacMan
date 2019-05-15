@@ -202,7 +202,8 @@ public class InkyTest {
         assertThat(inky.nextAiMove()).isEqualTo(Optional.of(Direction.NORTH));
     }
     /**
-     * Bad weather case where there is no path to inky's destination.
+     * Bad weather case where there is
+     * no path to inky's destination.
      */
     @Test
     void testInkyAlreadyOnDestination() {
