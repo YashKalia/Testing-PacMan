@@ -206,7 +206,7 @@ public class InkyTest {
      * no path to inky's destination.
      */
     @Test
-    void testInkyAlreadyOnDestination() {
+    void testNoPathToInkyDestination() {
         text.add("##                ##");
         text.add("##        ........##");
         text.add("##        ........##");
@@ -233,7 +233,7 @@ public class InkyTest {
      * Bad weather case where Inky is already on the destination where Inky should be.
      */
     @Test
-    void testNoPathToInkyDestination() {
+    void testInkyAlreadyOnDestination() {
         text.add("##                ##");
         text.add("##        ........##");
         text.add("##        ........##");
