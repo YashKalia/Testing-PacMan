@@ -201,4 +201,57 @@ public class InkyTest {
         Inky inky = Navigation.findUnitInBoard(Inky.class, level.getBoard());
         assertThat(inky.nextAiMove()).isEqualTo(Optional.of(Direction.NORTH));
     }
+    /**
+     * Bad weather case where there is no path to inky's destination.
+     */
+    @Test
+    void testInkyAlreadyOnDestination() {
+        text.add("##                ##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ..#.....##");
+        text.add("##        ..I.....##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ..P.....##");
+        text.add("##        ........##");
+        text.add("##        ..B.....##");
+
+        player.setDirection(Direction.NORTH);
+        Level level = ghostMapParser.parseMap(text);
+        level.registerPlayer(player);
+        Inky inky = Navigation.findUnitInBoard(Inky.class, level.getBoard());
+        assertThat(inky.nextAiMove()).isEqualTo(Optional.empty());
+    }
+
+    /**
+     * Bad weather case where Inky is already on the destination where Inky should be.
+     */
+    @Test
+    void testNoPathToInkyDestination() {
+        text.add("##                ##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ..I.....##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ........##");
+        text.add("##        ..P.....##");
+        text.add("##        ........##");
+        text.add("##        ..B.....##");
+
+        player.setDirection(Direction.NORTH);
+        Level level = ghostMapParser.parseMap(text);
+        level.registerPlayer(player);
+        Inky inky = Navigation.findUnitInBoard(Inky.class, level.getBoard());
+        assertThat(inky.nextAiMove()).isEqualTo(Optional.empty());
+    }
 }
