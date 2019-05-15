@@ -49,7 +49,7 @@ public class BoardTest {
      * @param expected expected boolean value.
      */
     @ParameterizedTest
-    @CsvSource({"0,0,true", "1,1,true", "-1,-1,false", "5,5,false", "6,6,false"})
+    @CsvSource({"0,0,true", "-1,-1,false", "5,5,false", "4,4,true"})
     void withinBordersTest(int x, int y, boolean expected) {
         board = new Board(grid);
         assertEquals(board.withinBorders(x, y), expected);

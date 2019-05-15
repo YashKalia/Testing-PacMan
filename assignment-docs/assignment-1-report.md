@@ -76,13 +76,18 @@ Some good weather behaviour cases are:
      The expected behaviour of Inky is that Inky should move away Player
 
 Bad weather behaviour cases are all cases where at least one or all of the conditions 1 upto and including 4 
-from from *requirements/conditions* are False.
+from from *requirements/conditions* are False. :
 
-Also another 2 bad weather cases :
+Also some other bad weather cases :
   1. All of the *requirements/conditions* are met and Inky is alongside Blinky, while Blinky is behind Player. 
      The expected behaviour of Inky is that Inky should not move away from Player but try to approach player.
   2. All of the *requirements/conditions* are met and Inky is ahead of Player, while Blinky is behind Player. 
      The expected behaviour of Inky is that Inky should not move towards Player but move away from player.
+  3. Case where Blinky is not on board.
+  4. Case where Inky is not on board.
+  5. Case where Player is not on board.
+  6. Case where there is no path from Inky to the destination where Inky should be.
+  7. Case where Inky is already on the destination where Inky should be.
 
 
 
