@@ -43,14 +43,17 @@ public class BoardTest {
     }
 
     /**
-     * Parameterized test for testing that squares are withing game borders.x->Width,y->Height,expected->expected value.
+     * Parameterized test for testing that squares
+     * are withing game borders.x->Width,y->Height,
+     * expected->expected value.
      *
      * @param x x coordinate.
      * @param y y coordinate.
      * @param expected expected boolean value.
      */
     @ParameterizedTest
-    @CsvSource({"0,0,true", "-1,-1,false", "5,5,false", "4,4,true","1,0,true","2,-1,false","3,5,false","0,4,true"})
+    @CsvSource({"0,0,true", "-1,-1,false", "5,5,false", "4,4,true",
+         "1,0,true", "2,-1,false", "3,5,false", "0,4,true"})
     void withinBordersTest(int x, int y, boolean expected) {
         board = new Board(grid);
         assertEquals(board.withinBorders(x, y), expected);
