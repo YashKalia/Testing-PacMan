@@ -46,14 +46,19 @@ and override the abstract getLevel method from Game class.
 
 ####Exercise-10
 
-Part-2
-  Good Weather Cases-
-  1. When Clyde is far from pacman's location-then he must move towards pacman's current location.
-  2. When Clyde is close to pacman's location-then he must run away from pacman.
+  1. Good weather cases.
+  1.1 When Clyde is far from pacman's location-then he must move towards pacman's current location.
+  1.2 When Clyde is close to pacman's location-then he must run away from pacman.
   
-  Bad Weather Cases-
-  1.When Clyde is far from pacman's location-then he must not  move away pacman's current location.
-  2.When Clyde is close to pacman's location-then he must not move towards pacman.
+  2. Bad Weather Cases-
+  2.1 When Clyde is far from pacman's location-then he must not  move away pacman's current location.
+  2.2 When Clyde is close to pacman's location-then he must not move towards pacman.
+  
+  3. Clyde extra bad weather cases-
+  3.1 If Clyde is not on board then the findUnitInBoard method  in Navigation class return a null object.
+  3.2 If the player is not on board then the nextAi move method cannot find a path and returns Optional.empty.
+  3.3 If there is not path between Clyde and the Player then the nextAi move method cannot find a path and returns Optional.empty.
+ 
 
 
 ####Exercise-11
@@ -76,20 +81,20 @@ Some good weather behaviour cases are:
      The expected behaviour of Inky is that Inky should move away Player
 
 Bad weather behaviour cases are all cases where at least one or all of the conditions 1 upto and including 4 
-from from *requirements/conditions* are False.
+from from *requirements/conditions* are False. :
 
-Also another 2 bad weather cases :
+Also some other bad weather cases :
   1. All of the *requirements/conditions* are met and Inky is alongside Blinky, while Blinky is behind Player. 
      The expected behaviour of Inky is that Inky should not move away from Player but try to approach player.
   2. All of the *requirements/conditions* are met and Inky is ahead of Player, while Blinky is behind Player. 
      The expected behaviour of Inky is that Inky should not move towards Player but move away from player.
+  3. Case where Blinky is not on board.
+  4. Case where Inky is not on board.
+  5. Case where Player is not on board.
+  6. Case where there is no path from Inky to the destination where Inky should be.
+  7. Case where Inky is already on the destination where Inky should be.
 
-
-
-
-
-
-Exercise-14
+  Exercise-14
 
 One solution is to add class attributes in the test class and use the @BeforeEach annotation and the setUp() method. 
 The code that you see that is repeated in the Arrange part of tests can be in the setUp method definition which will be invoked before each test.
