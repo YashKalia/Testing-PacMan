@@ -156,3 +156,11 @@ Testing private methods breaks encapsulation. If private methods have enough com
 we should put them in another class to keep high cohesion, a class should have only one purpose.
 
 
+####Excercise-18
+
+All checkstyle and Spotbug violations were fixed with suppressions.We added tests classes for ghosts Clyde and Inky for the "nextAimove()" method,and also
+we tested the boundaries of "withinBoarders()" method of the Board class using parameterized test annotation and domain tesing strategy.We tried to work on a seperate branch
+for each excercise and then merge the branch with the Asignment-1 branch. The pipeline failed for some commits and merge requests because of the checkstyle violations because we forgot
+to run gradle check beforehand.We commited 3 times on average per excercise and the work was evenly distributed as much as possible. 
+
+
