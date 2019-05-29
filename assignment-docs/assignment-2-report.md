@@ -14,11 +14,11 @@ continuation the the decision table:
 #### Exercise 5
 
 We think that the collisions where "nothing should happen" and/or shouldn't happen at all  are (see decision table at exercise 4) :
- 1. pellet collide with pellet
- 2. ghost collide with a ghost
- 3. player collide with a player (if playing multiplayer game)
- 4. ghost collide with pellet
- 5. pellet collide with a ghost 
+ 1. pellet collide with pellet (shouldn't happen at all)
+ 2. ghost collide with a ghost ("nothing should happen")
+ 3. player collide with a player (if playing multiplayer game) or (shouldn't happen at all in single player game)
+ 4. ghost collide with pellet ("nothing should happen")
+ 5. pellet collide with a ghost (shouldn't happen at all, because pellet should be able to move at least it isn't specified in user stories)
  
 for the 5 collisions that shouldn't happen (see exercise 5) : because it is not specified in the user stories what should happen,
 we have just tested what we assumed should/ shouldn't happen.
@@ -33,5 +33,17 @@ we have just tested what we assumed should/ shouldn't happen.
  java/nl.tudelft.jpacman/level/CollisionMapTest
   
  #### Exercise 7
+ 
+ 
+ #### Exercise 14
+ After we have change the PointCalculator of the game we have noticed the following strange behaviour of the game :
+ 1. After some time playing the game we have noticed the following runtime exception in the terminal : "Relax! You found one of the solutions!".
+ 2. While playing the game we have also noticed that at some point the player score start to decrease instead of increasing when eating a pellet.
+ 3. While playing the game the player suddenly dies/game over eventhough the player has not even collided with any ghosts.
+ 4. While playing the game at the beginning the score of the player increases a lot (around 2.1 billion) when the player's direction is West.
+  
+ #### Exercise 15 
+ 
+ 
  
  
