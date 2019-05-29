@@ -64,6 +64,8 @@ public abstract class CollisionMapTest {
     @Test
     void playerCollideWithGhostTest() {
         collisionMap.collide(player, ghost);
+
+        // player verification
         Mockito.verify(player, Mockito.times(1))
             .setKiller(ghost);
         Mockito.verify(player, Mockito.times(1))
@@ -71,10 +73,16 @@ public abstract class CollisionMapTest {
         boolean isAlive = player.isAlive();
         Mockito.verify(player, Mockito.never()).addPoints(Mockito.anyInt());
         boolean score = player.getScore() == 0;
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.times(1))
             .collidedWithAGhost(player, ghost);
         Mockito.verify(calculator, Mockito.never())
             .consumedAPellet(player, pellet);
+
+        // pellet verification
+        Mockito.verify(pellet, Mockito.never()).leaveSquare();
+
         assertThat(isAlive).isFalse();
         assertThat(score).isTrue();
     }
@@ -85,16 +93,22 @@ public abstract class CollisionMapTest {
     @Test
     void playerCollideWithPellet() {
         collisionMap.collide(player, pellet);
+
+        // plaver verification
         Mockito.verify(player, Mockito.never()).setKiller(Mockito.any());
         Mockito.verify(player, Mockito.never()).setAlive(false);
-        Mockito.verify(calculator, Mockito.never())
-            .collidedWithAGhost(Mockito.any(), Mockito.any());
         Mockito.verify(player, Mockito.times(1))
             .addPoints(Mockito.anyInt());
-        Mockito.verify(pellet, Mockito.times(1))
-            .leaveSquare();
+
+        // calculator verification
+        Mockito.verify(calculator, Mockito.never())
+            .collidedWithAGhost(Mockito.any(), Mockito.any());
         Mockito.verify(calculator, Mockito.times(1))
             .consumedAPellet(player, pellet);
+
+        // pellet verification
+        Mockito.verify(pellet, Mockito.times(1))
+            .leaveSquare();
     }
 
     /**
@@ -103,14 +117,20 @@ public abstract class CollisionMapTest {
     @Test
     void playerCollideWithPlayer() {
         collisionMap.collide(player, player);
-        Mockito.verify(pellet, Mockito.never()).leaveSquare();
+
+        // plaver verification
         Mockito.verify(player, Mockito.never()).addPoints(Mockito.anyInt());
         Mockito.verify(player, Mockito.never()).setAlive(false);
         Mockito.verify(player, Mockito.never()).setKiller(ghost);
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.never())
             .consumedAPellet(player, pellet);
         Mockito.verify(calculator, Mockito.never())
             .collidedWithAGhost(player, ghost);
+
+        // pellet verification
+        Mockito.verify(pellet, Mockito.never()).leaveSquare();
     }
 
 
@@ -120,16 +140,22 @@ public abstract class CollisionMapTest {
     @Test
     void ghostCollideWithPellet() {
         collisionMap.collide(ghost, pellet);
-        Mockito.verify(pellet, Mockito.never()).leaveSquare();
+
+        // plaver verification
         Mockito.verify(player, Mockito.never()).addPoints(Mockito.anyInt());
         Mockito.verify(player, Mockito.never()).setAlive(false);
         Mockito.verify(player, Mockito.never()).setKiller(ghost);
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.never())
             .consumedAPellet(player, pellet);
         Mockito.verify(calculator, Mockito.never())
             .pacmanMoved(Mockito.any(), Mockito.any());
         Mockito.verify(calculator, Mockito.never())
             .collidedWithAGhost(player, ghost);
+
+        // pellet verification
+        Mockito.verify(pellet, Mockito.never()).leaveSquare();
     }
 
     /**
@@ -138,6 +164,8 @@ public abstract class CollisionMapTest {
     @Test
     void ghostCollideWithPlayer() {
         collisionMap.collide(ghost, player);
+
+        // plaver verification
         Mockito.verify(player, Mockito.times(1))
             .setKiller(ghost);
         Mockito.verify(player, Mockito.times(1))
@@ -145,10 +173,16 @@ public abstract class CollisionMapTest {
         boolean isAlive = player.isAlive();
         Mockito.verify(player, Mockito.never()).addPoints(Mockito.anyInt());
         boolean score = player.getScore() == 0;
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.times(1))
             .collidedWithAGhost(player, ghost);
         Mockito.verify(calculator, Mockito.never()).pacmanMoved(Mockito.any(), Mockito.any());
         Mockito.verify(calculator, Mockito.never()).consumedAPellet(player, pellet);
+
+        // pellet verification
+        Mockito.verify(pellet, Mockito.never()).leaveSquare();
+
         assertThat(isAlive).isFalse();
         assertThat(score).isTrue();
     }
@@ -159,10 +193,16 @@ public abstract class CollisionMapTest {
     @Test
     void ghostCollideWithGhost() {
         collisionMap.collide(ghost, ghost);
+
+        // pellet verification
         Mockito.verify(pellet, Mockito.never()).leaveSquare();
+
+        // plaver verification
         Mockito.verify(player, Mockito.never()).addPoints(Mockito.anyInt());
         Mockito.verify(player, Mockito.never()).setAlive(false);
         Mockito.verify(player, Mockito.never()).setKiller(ghost);
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.never()).consumedAPellet(player, pellet);
         Mockito.verify(calculator, Mockito.never()).pacmanMoved(Mockito.any(), Mockito.any());
         Mockito.verify(calculator, Mockito.never()).collidedWithAGhost(player, ghost);
@@ -174,9 +214,13 @@ public abstract class CollisionMapTest {
     @Test
     void pelletCollideWithPellet() {
         collisionMap.collide(pellet, pellet);
+
+        // player verification
         Mockito.verify(player, Mockito.never()).addPoints(Mockito.anyInt());
         Mockito.verify(player, Mockito.never()).setAlive(false);
         Mockito.verify(player, Mockito.never()).setKiller(ghost);
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.never()).consumedAPellet(player, pellet);
         Mockito.verify(calculator, Mockito.never()).pacmanMoved(Mockito.any(), Mockito.any());
         Mockito.verify(calculator, Mockito.never()).collidedWithAGhost(player, ghost);
@@ -188,18 +232,25 @@ public abstract class CollisionMapTest {
     @Test
     void pelletCollideWithPlayer() {
         collisionMap.collide(pellet, player);
+
+        // player verification
         Mockito.verify(player, Mockito.never()).setKiller(Mockito.any());
         Mockito.verify(player, Mockito.never()).setAlive(false);
+        Mockito.verify(player, Mockito.times(1))
+            .addPoints(Mockito.anyInt());
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.never())
             .collidedWithAGhost(Mockito.any(), Mockito.any());
         Mockito.verify(calculator, Mockito.never())
             .pacmanMoved(Mockito.any(), Mockito.any());
-        Mockito.verify(player, Mockito.times(1))
-            .addPoints(Mockito.anyInt());
-        Mockito.verify(pellet, Mockito.times(1))
-            .leaveSquare();
         Mockito.verify(calculator, Mockito.times(1))
             .consumedAPellet(player, pellet);
+
+        // pellet verification
+        Mockito.verify(pellet, Mockito.times(1))
+            .leaveSquare();
+
     }
 
     /**
@@ -208,9 +259,13 @@ public abstract class CollisionMapTest {
     @Test
     void pelletCollideWithGhost() {
         collisionMap.collide(pellet, ghost);
+
+        // player verification
         Mockito.verify(player, Mockito.never()).addPoints(Mockito.anyInt());
         Mockito.verify(player, Mockito.never()).setAlive(false);
         Mockito.verify(player, Mockito.never()).setKiller(ghost);
+
+        // calculator verification
         Mockito.verify(calculator, Mockito.never()).consumedAPellet(player, pellet);
         Mockito.verify(calculator, Mockito.never()).pacmanMoved(Mockito.any(), Mockito.any());
         Mockito.verify(calculator, Mockito.never()).collidedWithAGhost(player, ghost);
