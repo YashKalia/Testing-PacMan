@@ -35,6 +35,22 @@ we have just tested what we assumed should/ shouldn't happen.
  #### Exercise 7
  
  
+ #### Exercise 9 
+
+ We see "Thread.sleep(500L)" in the smokeTest which make the test flaky,
+ because it is possible that we have to wait more than "500L" such that what is waited for is actually done executing. 
+ A solution for this can be to constantly check if the action we're waiting for is done.
+ Other causes for flakiness are : 
+ 1. tests that are too large (uses much memory) (solved by making tests use less memory when possible)
+ 2. when tests have  to be executed in certain order to pass (solved by making test independent and isolated)
+ 3. tests are usually flaky because incorrect assumptions about the ordering of operations being performed by different threads
+  (solved by enforcing certain orders instead of assuming)   
+  
+
+
+ 
+  
+ 
  #### Exercise 14
  After we have change the PointCalculator of the game we have noticed the following strange behaviour of the game :
  1. After some time playing the game we have noticed the following runtime exception in the terminal : "Relax! You found one of the solutions!".
