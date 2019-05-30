@@ -46,7 +46,17 @@ we have just tested what we assumed should/ shouldn't happen.
  3. tests are usually flaky because incorrect assumptions about the ordering of operations being performed by different threads
   (solved by enforcing certain orders instead of assuming)   
   
-
+ #### Exercise 11
+ 
+ 
+ #### Exercise 13
+ Mocking is a technique that is used to make the relationships and interactions between objects visible.
+ We want to mock dependencies to improve controllability and observability when testing a class in isolation and also mock
+ interfaces that specify the business rules that our program uses.
+ We shouldn’t  mock classes that are concrete implementations of domain rules of the system
+ because maintaining the behavior of the mock compatible with the behavior of original class is hard 
+ and that mocking increases the coupling between the test and the production code, which means that 
+ Mocks will have to be changed to suit the changes of the concrete implementation (you may or may not have full control over it e.g third-party libraries).
 
  
   
