@@ -47,7 +47,13 @@ we have just tested what we assumed should/ shouldn't happen.
   (solved by enforcing certain orders instead of assuming)   
   
  #### Exercise 11
- 
+ When we use mocks for integration testing, mocks may oversimplify and tend to be unrealistic e.g. 
+ integration problems might pass because they were oversimplified thus giving a false sense of code quality.
+ Integration of the system-under-test with its collaborators is might not be properly tested as a result,
+ the individual components may work as expected, while the interaction between them may still be flawed.
+ Another disadvantage is that strong coupling of mocks with the class interferes/complicate with refactoring, 
+ since implementation changes are much more likely to break tests that use mocks.
+
  
  #### Exercise 13
  Mocking is a technique that is used to make the relationships and interactions between objects visible.
