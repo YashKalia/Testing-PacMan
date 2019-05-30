@@ -35,6 +35,38 @@ we have just tested what we assumed should/ shouldn't happen.
  #### Exercise 7
  
  
+ #### Exercise 9 
+
+ We see "Thread.sleep(500L)" in the smokeTest which make the test flaky,
+ because it is possible that we have to wait more than "500L" such that what is waited for is actually done executing. 
+ A solution for this can be to constantly check if the action we're waiting for is done.
+ Other causes for flakiness are : 
+ 1. tests that are too large (uses much memory) (solved by making tests use less memory when possible)
+ 2. when tests have  to be executed in certain order to pass (solved by making test independent and isolated)
+ 3. tests are usually flaky because incorrect assumptions about the ordering of operations being performed by different threads
+  (solved by enforcing certain orders instead of assuming)   
+  
+ #### Exercise 11
+ When we use mocks for integration testing, mocks may oversimplify and tend to be unrealistic e.g. 
+ integration problems might pass because they were oversimplified thus giving a false sense of code quality.
+ Integration of the system-under-test with its collaborators is might not be properly tested as a result,
+ the individual components may work as expected, while the interaction between them may still be flawed.
+ Another disadvantage is that strong coupling of mocks with the class interferes/complicate with refactoring, 
+ since implementation changes are much more likely to break tests that use mocks.
+
+ 
+ #### Exercise 13
+ Mocking is a technique that is used to make the relationships and interactions between objects visible.
+ We want to mock dependencies to improve controllability and observability when testing a class in isolation and also mock
+ interfaces that specify the business rules that our program uses.
+ We shouldn’t  mock classes that are concrete implementations of domain rules of the system
+ because maintaining the behavior of the mock compatible with the behavior of original class is hard 
+ and that mocking increases the coupling between the test and the production code, which means that 
+ Mocks will have to be changed to suit the changes of the concrete implementation (you may or may not have full control over it e.g third-party libraries).
+
+ 
+  
+ 
  #### Exercise 14
  After we have change the PointCalculator of the game we have noticed the following strange behaviour of the game :
  1. After some time playing the game we have noticed the following runtime exception in the terminal : "Relax! You found one of the solutions!".
