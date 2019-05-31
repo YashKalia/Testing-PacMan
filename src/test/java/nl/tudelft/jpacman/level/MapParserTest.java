@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.level;
 
 
+import nl.tudelft.jpacman.PacmanConfigurationException;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
@@ -8,19 +9,17 @@ import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.npc.ghost.Blinky;
 import nl.tudelft.jpacman.npc.ghost.GhostFactory;
 import nl.tudelft.jpacman.sprite.PacManSprites;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -222,12 +221,43 @@ public class MapParserTest {
     //bad weather cases-excericse 2 starts here.
     //Check map format bad weather cases.
 
-    // @Test
-    //void testnullinput(){
-    //  List<String> nulllist=new ArrayList<>();
-    //  mapParser.parseMap(nulllist);
-    // assertThatThrownBy(PacmanConfigurationException,parseMap,nullist);
-    // }
+
+     @Test
+    void testnullinput(){
+      List<String> nulllist=new ArrayList<>();
+      Assertions.assertThrows(PacmanConfigurationException.class, () -> {
+             mapParser.parseMap(nulllist);
+         });
+     }
+
+    @Test
+    void testemptyinput(){
+        List<String> nulllist=new ArrayList<>();
+        nulllist.add("abc");
+        nulllist.remove(0);
+        Assertions.assertThrows(PacmanConfigurationException.class, () -> {
+            mapParser.parseMap(nulllist);
+        });
+    }
+
+    @Test
+    void testwidthinput(){
+        List<String> nulllist=new ArrayList<>();
+        nulllist.add("");
+        Assertions.assertThrows(PacmanConfigurationException.class, () -> {
+            mapParser.parseMap(nulllist);
+        });
+    }
+
+    @Test
+    void testunequallineinput(){
+        List<String> nulllist=new ArrayList<>();
+        nulllist.add("abc");
+        nulllist.add("abcdef");
+        Assertions.assertThrows(PacmanConfigurationException.class, () -> {
+            mapParser.parseMap(nulllist);
+        });
+    }
 
 
 }
