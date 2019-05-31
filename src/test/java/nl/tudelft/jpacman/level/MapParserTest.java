@@ -9,7 +9,6 @@ import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.npc.ghost.Blinky;
 import nl.tudelft.jpacman.npc.ghost.GhostFactory;
 import nl.tudelft.jpacman.sprite.PacManSprites;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -21,7 +20,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -69,7 +69,6 @@ public class MapParserTest {
         Mockito.when(levelFactory.createGhost()).thenReturn(b);
         Mockito.when(levelFactory.createPellet()).thenReturn(p);
         player = playerFactory.createPacMan();
-
 
 
     }
@@ -202,7 +201,7 @@ public class MapParserTest {
      * Test for alternate parseMap method-the one with the input stream
      * as parameter.
      *
-     * @throws IOException  if IO exception is thrown.
+     * @throws IOException if IO exception is thrown.
      */
     @Test
     void inputstreamparsemapTest() throws IOException {
@@ -222,42 +221,67 @@ public class MapParserTest {
     //Check map format bad weather cases.
 
 
-     @Test
-    void testnullinput(){
-      List<String> nulllist=new ArrayList<>();
-      Assertions.assertThrows(PacmanConfigurationException.class, () -> {
-             mapParser.parseMap(nulllist);
-         });
-     }
-
+    /**
+     * Testing if exception is raised if null input is provided.
+     */
     @Test
-    void testemptyinput(){
-        List<String> nulllist=new ArrayList<>();
-        nulllist.add("abc");
-        nulllist.remove(0);
-        Assertions.assertThrows(PacmanConfigurationException.class, () -> {
-            mapParser.parseMap(nulllist);
-        });
+    void testnullinput() {
+        List<String> thelist = null;
+        try {
+            mapParser.parseMap(thelist);
+        } catch (Exception e) {
+            assertThat(e instanceof PacmanConfigurationException);
+            assertTrue((e.getMessage().contains("Input text cannot be null.")));
+        }
+
+
     }
 
+    /**
+     * Testing if exception is raised if empty list is provided.
+     */
     @Test
-    void testwidthinput(){
-        List<String> nulllist=new ArrayList<>();
-        nulllist.add("");
-        Assertions.assertThrows(PacmanConfigurationException.class, () -> {
-            mapParser.parseMap(nulllist);
-        });
+    void testemptyinput() {
+        List<String> list = new ArrayList<>();
+        try {
+            mapParser.parseMap(list);
+        } catch (Exception e) {
+            assertThat(e instanceof PacmanConfigurationException);
+            assertTrue((e.getMessage().contains("Input text must consist of at least 1 row.")));
+        }
     }
 
+    /**
+     * Testing if exception is raised if input is "" .
+     */
     @Test
-    void testunequallineinput(){
-        List<String> nulllist=new ArrayList<>();
-        nulllist.add("abc");
-        nulllist.add("abcdef");
-        Assertions.assertThrows(PacmanConfigurationException.class, () -> {
-            mapParser.parseMap(nulllist);
-        });
+    void testwidthinput() {
+        List<String> list = new ArrayList<>();
+        list.add("");
+        try {
+            mapParser.parseMap(list);
+        } catch (Exception e) {
+            assertThat(e instanceof PacmanConfigurationException);
+            assertTrue((e.getMessage().contains("Input text lines cannot be empty.")));
+        }
+
     }
 
+    /**
+     * Testing if exception is raised if input of unequal length is provided.
+     */
+    @Test
+    void testunequallineinput() {
+        List<String> list = new ArrayList<>();
+        list.add("abc");
+        list.add("abcdef");
+        try {
+            mapParser.parseMap(list);
+        } catch (Exception e) {
+            assertThat(e instanceof PacmanConfigurationException);
+            assertTrue((e.getMessage().contains("Input text lines are not of equal width.")));
+        }
 
+
+    }
 }
