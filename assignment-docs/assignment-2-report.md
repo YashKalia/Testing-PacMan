@@ -18,6 +18,8 @@ However,code coverage is not the answer to the problem of software testing and 1
 of quality in your tests based on their coverage, but you still need to be writing meaningful tests.
 
 ##Excercise-12
-Unit tests are relatively faster than system and integraation tests.One thing tht can slow them down is the sheer size of the component/unit they are testing.
+Unit tests are relatively faster than system and integraation tests.One thing that can slow them down is the sheer size of the component/unit they are testing.
 The more complicated the unit,the more its dependency on other units,the longer it takes with the time difference being more pronounced as we move up the testing pyramid.
-Also the more time consuming the functions the class performs are directly affects time required to test.
+Also the more time consuming the functions the class performs are directly affects time required to test,so classes with less complicated methods are tested quicker.Not mocking the tests lso makes them slower.
+One way to speed up our tests.Having more unit tests than tests of types that occur higher in the testing pyramid ensures that tests are fast.Also using
+mock object is quicker than actually making use of different components that feed data to our class under test.
