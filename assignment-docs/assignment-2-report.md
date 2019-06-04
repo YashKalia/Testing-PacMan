@@ -49,10 +49,11 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  #### Exercise 6
  
  We have made an abstract test class from which 2 other test classes 
- (one for PlayerCollisions and DefaultPlayerInteractionMap )inherit from 
- the collide method in both one for PlayerCollisions and DefaultPlayerInteractionMap are tested,
+ (one for PlayerCollisionsTest and DefaultPlayerInteractionMapTest )inherit from. 
+ The collide method in both one for PlayerCollisions and DefaultPlayerInteractionMap are tested,
  by doing so all other methods in those classes are also tested indirectly according to
- the coverage report that IntelliJ gives. This test class can be found in the test folder at:
+ the coverage report that IntelliJ gives. 
+ The tests needed for this exercise can be found and run (choose "All 2" ) in class in the test folder at:
  java/nl.tudelft.jpacman/level/CollisionMapTest
   
  #### Exercise 7
