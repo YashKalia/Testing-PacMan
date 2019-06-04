@@ -2,18 +2,13 @@
 
 #### Exercise 4
 
-
-Please look at answer to exercise 5 to for extra information about collisions that shouldn't happen if needed.
-
 Decision table :
 
-<img src = "https://media.discordapp.net/attachments/546026199197941775/582917845260697600/unknown.png">
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/585505329186341001/unknown.png">
 
 continuation the the decision table:
 
-<img src = "https://media.discordapp.net/attachments/546026199197941775/582917937459888128/unknown.png?width=1017&height=202">
-
-
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/585505500314206225/unknown.png">
 
 #### Exercise 5
 
@@ -24,8 +19,8 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  4. ghost collide with pellet ("nothing should happen")
  5. pellet collide with a ghost (shouldn't happen at all, because pellet should be able to move at least it isn't specified in user stories)
  
-for the 5 collisions that shouldn't happen (see exercise 5) : because it is not specified in the user stories what should happen,
-we have just tested what we assumed should/ shouldn't happen.
+ Because pellets shouldn't be able to move (according to user stories) we have not included it as a collider
+ in the decision table. Hence, we don't have test cases where the pellet is a collider.
 
  #### Exercise 6
  
@@ -161,3 +156,7 @@ we have just tested what we assumed should/ shouldn't happen.
     The reason for why SpotBugs didn't report warnings is because SpotBugs is a **static** analysis which means statically analyzing the code will not help since the code base for  the AmazingPointCalculator plugin is not available for static analysis tools (e.g. SpotBugs). 
     Furthermore the anomalies caused by the AmazingCalculator occur at runtime which means that SpotBugs won't be able to
     give warnings for these anomalies becauase static analysis tools test software without execution of software. 
+    
+ #### Exercise 17
+ 
+ 
