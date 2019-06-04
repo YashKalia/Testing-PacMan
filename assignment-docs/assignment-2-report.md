@@ -130,7 +130,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
   If we compare all of the figures we see that in the graphs (see rightmost part of the killedByGhost? and isAlive?) where the default calculator is used, 
   pacman is always killed by a ghost (so it is never the case that pacman dies without colliding with a ghost). We also see that when the default calculator is used,
   the pacman can collect any number of pellets before dying (at figure 1 the player ate more than 50 and at figure 2 we see the player has consumed around 20).
-  In constrast to the graphs of default calculator, we see the following patterns occur in figures 3, 4 and 5 (amazing calculator is used in these graphs) :
+  In contrast to the graphs of default calculator, we see the following patterns occur in figures 3, 4 and 5 (amazing calculator is used in these graphs) :
   1. The pacman dies without ever having collided with a ghost (the killedByGhost graphs is always at False)
   2. We see that pacman always dies right after when he has consumed around  35 pellets.
    
@@ -151,12 +151,28 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
   We have run "gradle staticAnalysis" command, there were no security warnings 
     associated to the piece of code where the PointCalculator is dynamically loaded 
     reported by SpotBugs. We believe that the vulnerability from OWASP 2017 list that applies to the source
-    code where the PointCalculator is dynamically loaded  is : "A1 Injection" because JPacman uses AmazinPointCalculator 
+    code where the PointCalculator is dynamically loaded  is : "A1 Injection" because JPacman uses AmazingPointCalculator 
     which is a dynamically loaded plugin and we usually "don't have" access to the source code of such plugins.
     The reason for why SpotBugs didn't report warnings is because SpotBugs is a **static** analysis which means statically analyzing the code will not help since the code base for  the AmazingPointCalculator plugin is not available for static analysis tools (e.g. SpotBugs). 
     Furthermore the anomalies caused by the AmazingCalculator occur at runtime which means that SpotBugs won't be able to
-    give warnings for these anomalies becauase static analysis tools test software without execution of software. 
+    give warnings for these anomalies because static analysis tools test software without execution of software. 
     
  #### Exercise 17
+ 1. To not use plugins / dynamic class loading for classes, if you do not have access to
+    source code for seeing if there are security vulnerabilities. 
+ 2. Use a custom defined  ClassLoader method to load the untrusted code. The class loader method would get called 
+    for all classes which the untrusted code uses, so you can do things like disable access to individual JDK classes by using a strict white-list of allowed JDK classes. (less privilege/ access for dynamically loaded class) 
+ 3. Security vulnerabilities can arise when privileged code 
+    coexists with unprivileged code (or less privileged code) that was loaded by the same class loader. 
+    by separating code into multiple name-spaces and separating code in different name-spaces the security vulnerabilities can be prevented.
+     
+ #### Part 1.7
+ All checkstyle and Spotbug violations were fixed with suppressions if  needed . 
+ We added tests classes for the collisionMap and it's extensions, start method in Game class and good and bad weather cases for the parseMap methods.
+ We tried to work on a separate branch for each exercise and then merge the branch with the Asignment-2 branch. The pipeline failed for some commits and merge requests because of the checkstyle violations because we forgot
+ to run gradle check beforehand. We commited 3 times on average per exercise and the work was evenly distributed as much as possible. 
+ 
+ 
+
  
  
