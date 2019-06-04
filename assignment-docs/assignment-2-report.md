@@ -1,6 +1,10 @@
 ## Assginment 2 report
 
 #### Exercise 4
+
+
+Please look at answer to exercise 5 to for extra information about collisions that shouldn't happen if needed.
+
 Decision table :
 
 <img src = "https://media.discordapp.net/attachments/546026199197941775/582917845260697600/unknown.png">
@@ -146,3 +150,14 @@ we have just tested what we assumed should/ shouldn't happen.
   In figure 5 we can also see that the score drops to negative 2 billion and then increases by 2 billion again (see when the x-axis' value is around 80), furthermore we see that these 2 odd changes 
   in the score happens when the player has consumed a pellet while facing West (see the Direction graph when x-axis' value is around 80 in figure 5). 
   We obviously do not see massive increases and decreases in the score in the figures 1 and 2 where the default calculator is used. 
+  
+  #### Exercise 16
+  
+  We have run "gradle staticAnalysis" command, there were no security warnings 
+    associated to the piece of code where the PointCalculator is dynamically loaded 
+    reported by SpotBugs. We believe that the vulnerability from OWASP 2017 list that applies to the source
+    code where the PointCalculator is dynamically loaded  is : "A1 Injection" because JPacman uses AmazinPointCalculator 
+    which is a dynamically loaded plugin and we usually "don't have" access to the source code of such plugins.
+    The reason for why SpotBugs didn't report warnings is because SpotBugs is a **static** analysis which means statically analyzing the code will not help since the code base for  the AmazingPointCalculator plugin is not available for static analysis tools (e.g. SpotBugs). 
+    Furthermore the anomalies caused by the AmazingCalculator occur at runtime which means that SpotBugs won't be able to
+    give warnings for these anomalies becauase static analysis tools test software without execution of software. 
