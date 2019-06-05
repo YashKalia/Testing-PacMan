@@ -1,4 +1,3 @@
-
 ## Assginment 2 report
 
 #### Exercise 1 & 2
@@ -251,5 +250,4 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  it so we just commented out the 2 lines of codes that causes the SpotBugs warning. 
  We added tests classes for the collisionMap and it's extensions, start method in Game class and good and bad weather cases for the parseMap methods.
  We tried to work on a separate branch for each exercise and then merge the branch with the Asignment-2 branch. The pipeline failed for some commits and merge requests because of the checkstyle violations because we forgot
- to run gradle check beforehand. We commited 3 times on average per exercise and the work was evenly distributed as much as possible. 
-
+ to run gradle check beforehand. 
