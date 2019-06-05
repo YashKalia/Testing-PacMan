@@ -52,7 +52,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  Which means the consequences/outcomes of e.g. player collide with pellet is the same as peller collide witht player (same goes for ghost and pellet).
  Therefore, we have included test cases where the pellet is a collider. 
  
- #### Exercise 6
+#### Exercise 6
  
  We have made an abstract test class from which 2 other test classes 
  (one for PlayerCollisionsTest and DefaultPlayerInteractionMapTest )inherit from. 
@@ -62,16 +62,18 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  The tests needed for this exercise can be found and run (choose "All 2" ) in class in the test folder at:
  src\test\java\nl\tudelft\jpacman\level\CollisionMapTest.java
   
- #### Exercise 7
+#### Exercise 7
  
  To get/compare the coverage of the tests given at beginning (tests in default test folder) with 
  the tests that we have added (default test folder + test folder), we ran the the tests coverage with the tracing option.
  
  Coverage report of the level package when only tests in default test folder are run :
+ 
  <img src = "https://media.discordapp.net/attachments/546026199197941775/585733005088391168/unknown.png">
  
  
  Coverage report of the level package when tests default test + test folders are run :
+ 
  <img src = "https://cdn.discordapp.com/attachments/546026199197941775/585732637340073984/unknown.png">
 
  We can see that the with only the default tests :
@@ -91,13 +93,13 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  3. Pellet/Player/Ghost colliding into empty square (the collide method doesn't allow this)
  4. Player colliding into the last pellet on a level and see if the game is won
  
- #### Exercise-8
+#### Exercise-8
  To test the randomMove() method the idea should be that given adjacent accessible squares
  a list of all possible directions should be computed and from that list a direction should
  be chosen at random.Since the output can be different(random) even if the input supplied is the same
  therefore we provide the randomMove() method with "seeds".
  
- #### Exercise 9 
+#### Exercise 9 
 
  We see "Thread.sleep(500L)" in the smokeTest which make the test flaky,
  because it is possible that we have to wait more than "500L" such that what is waited for is actually done executing. 
@@ -108,7 +110,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  3. tests are usually flaky because incorrect assumptions about the ordering of operations being performed by different threads
   (solved by enforcing certain orders instead of assuming)   
   
-  #### Exercise-10
+#### Exercise-10
   Code coverage is a structural testing technique in which different metrics(such as line,statement,branch,condition etc.)
   are employed to check what percentage of our code is "covered" with respectnto that metric.Code coverage provides information
   about what to focus at while structural testing.Its advantage is that it can be useful in finding and eliminating bugs in the
@@ -121,7 +123,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
   However,code coverage is not the answer to the problem of software testing and 100% code coverage is not a guarantee of 100% bug free software.You can infer a certain level
   of quality in your tests based on their coverage, but you still need to be writing meaningful tests. 
  
- #### Exercise 11
+#### Exercise 11
  When we use mocks for integration testing, mocks may oversimplify and tend to be unrealistic e.g. 
  integration problems might pass because they were oversimplified thus giving a false sense of code quality.
  Integration of the system-under-test with its collaborators is might not be properly tested as a result,
@@ -129,14 +131,14 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  Another disadvantage is that strong coupling of mocks with the class interferes/complicate with refactoring, 
  since implementation changes are much more likely to break tests that use mocks.
  
- #### Excercise-12
+#### Exercise-12
  Unit tests are relatively faster than system and integraation tests.One thing that can slow them down is the sheer size of the component/unit they are testing.
  The more complicated the unit,the more its dependency on other units,the longer it takes with the time difference being more pronounced as we move up the testing pyramid.
  Also the more time consuming the functions the class performs are directly affects time required to test,so classes with less complicated methods are tested quicker.Not mocking the tests lso makes them slower.
  One way to speed up our tests.Having more unit tests than tests of types that occur higher in the testing pyramid ensures that tests are fast.Also using
  mock object is quicker than actually making use of different components that feed data to our class under test.
  
- #### Exercise 13
+#### Exercise 13
  Mocking is a technique that is used to make the relationships and interactions between objects visible.
  We want to mock dependencies to improve controllability and observability when testing a class in isolation and also mock
  interfaces that specify the business rules that our program uses.
@@ -145,7 +147,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  and that mocking increases the coupling between the test and the production code, which means that 
  Mocks will have to be changed to suit the changes of the concrete implementation (you may or may not have full control over it e.g third-party libraries).
  
- #### Exercise 14
+#### Exercise 14
  After we have change the PointCalculator of the game we have noticed the following strange behaviour of the game :
  1. After some time playing the game we have noticed the following runtime exception in the terminal : "Relax! You found one of the solutions!".
  2. While playing the game we have also noticed that at some point the player score start to decrease instead of increasing when eating a pellet.
@@ -154,7 +156,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
   decreases a lot (around 2.1 billion) when the player's eats a pellet in direction is West, if the player eats another pellet again in the West direction
   the point become positive again. 
   
- #### Exercise 15 
+#### Exercise 15 
  
  For this exercise we have quite a lot of snapshots so we advise our reviewer to two open two copies of this pdf to ease reviewing.
  
@@ -225,7 +227,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
   in the score happens when the player has consumed a pellet while facing West (see the Direction graph when x-axis' value is around 80 in figure 5). 
   We obviously do not see massive increases and decreases in the score in the figures 1 and 2 where the default calculator is used. 
   
-  #### Exercise 16
+#### Exercise 16
   
   We have run "gradle staticAnalysis" command, there were no security warnings 
     associated to the piece of code where the PointCalculator is dynamically loaded 
@@ -236,7 +238,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
     Furthermore the anomalies caused by the AmazingCalculator occur at runtime which means that SpotBugs won't be able to
     give warnings for these anomalies because static analysis tools test software without execution of software. 
     
- #### Exercise 17
+#### Exercise 17
  1. To not use plugins / dynamic class loading for classes, if you do not have access to
     source code for seeing if there are security vulnerabilities. 
  2. Use a custom defined  ClassLoader method to load the untrusted code. The class loader method would get called 
@@ -245,7 +247,7 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
     coexists with unprivileged code (or less privileged code) that was loaded by the same class loader. 
     by separating code into multiple name-spaces and separating code in different name-spaces the security vulnerabilities can be prevented.
      
- #### Part 1.7
+#### Part 1.7
  All checkstyle violations were fixed with suppressions if  needed. There was a SpotBugs violation but we didn't know how to suppress
  it so we just commented out the 2 lines of codes that causes the SpotBugs warning. 
  We added tests classes for the collisionMap and it's extensions, start method in Game class and good and bad weather cases for the parseMap methods.
