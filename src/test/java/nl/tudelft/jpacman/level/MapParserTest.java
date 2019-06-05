@@ -284,4 +284,22 @@ public class MapParserTest {
 
 
     }
+    
+    /**
+     * No resource found test case.
+     * @throws IOException as a exception.
+     */
+    @Test
+    void testnoresource() throws IOException {
+        String mapname = "mapFile";
+        try {
+            mapParser.parseMap(mapname);
+        }
+        catch (Exception e) {
+            assertThat(e instanceof PacmanConfigurationException);
+            assertTrue((e.getMessage().contains("Could not get resource for: " + mapname)));
+        }
+    }
+    
+    
 }
