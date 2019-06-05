@@ -26,10 +26,12 @@ public class MapParser {
      */
     private final LevelFactory levelCreator;
 
+
     /**
      * The factory that creates the squares and board.
      */
     private final BoardFactory boardCreator;
+
 
     /**
      * Creates a new map parser.
