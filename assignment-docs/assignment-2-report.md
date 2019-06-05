@@ -42,15 +42,17 @@ continuation the the decision table:
 #### Exercise 5
 
 We think that the collisions where "nothing should happen" and/or shouldn't happen at all  are (see decision table at exercise 4) :
- 1. pellet collide with pellet (shouldn't happen at all)
+ 1. pellet collide with pellet (shouldn't happen at all, so no test case for this test condition)
  2. ghost collide with a ghost ("nothing should happen")
  3. player collide with a player (if playing multiplayer game) or (shouldn't happen at all in single player game)
  4. ghost collide with pellet ("nothing should happen")
  5. pellet collide with a ghost (shouldn't happen at all, because pellet should be able to move at least it isn't specified in user stories)
  
  Because pellets shouldn't be able to move (according to user stories) we have not included it as a collider
- in the decision table. Hence, we don't have test cases where the pellet is a collider.
-
+ in the decision table. However, we can see that there is "symmetry" in the PlayerCollisions and DefaultPlayerInteractionMap.
+ Which means the consequences/outcomes of e.g. player collide with pellet is the same as peller collide witht player (same goes for ghost and pellet).
+ Therefore, we have included test cases where the pellet is a collider. 
+ 
  #### Exercise 6
  
  We have made an abstract test class from which 2 other test classes 
@@ -59,9 +61,36 @@ We think that the collisions where "nothing should happen" and/or shouldn't happ
  by doing so all other methods in those classes are also tested indirectly according to
  the coverage report that IntelliJ gives. 
  The tests needed for this exercise can be found and run (choose "All 2" ) in class in the test folder at:
- java/nl.tudelft.jpacman/level/CollisionMapTest
+ src\test\java\nl\tudelft\jpacman\level\CollisionMapTest.java
   
  #### Exercise 7
+ 
+ To get/compare the coverage of the tests given at beginning (tests in default test folder) with 
+ the tests that we have added (default test folder + test folder), we ran the the tests coverage with the tracing option.
+ 
+ Coverage report of the level package when only tests in default test folder are run :
+ <img src = "https://media.discordapp.net/attachments/546026199197941775/585733005088391168/unknown.png">
+ 
+ 
+ Coverage report of the level package when tests default test + test folders are run :
+ <img src = "https://cdn.discordapp.com/attachments/546026199197941775/585732637340073984/unknown.png">
+
+ We can see that the with only the default tests :
+ 1. CollisionInteractionMap has 0% for class-, method-, line- and branch coverage. However with the addition of tests in test folder,
+ the percentages have increased to 100%, 100%, 97% and 58% respectively.
+ 2. DefaultPlayerInteractionMap has 0% for class-, method- and line coverage and 100% branch coverage because of zero branches.
+ However with the addition of tests in test folder,the percentages have increased to 100%, 100%, 100% and 100% respectively.
+ 3. PlayerCollisions has 100% class-, 85% method- , 76% line- , 60% branch coverage.However with the addition of tests in test folder,
+ the percentages have increased to 100%, 100%, 100% and 85% respectively.
+ 
+ The collision functionality we have covered in the test folder are :
+ all the ones described in the decision table (see answer to exercise 4) and pellet colliding with ghost and player.
+ 
+ The collision functionality are unchecked are:
+ 1. Pellet colliding with pellet.
+ 2. Pellet/Player/Ghost trying to collide into wall (the collide method doesn't allow this)
+ 3. Pellet/Player/Ghost colliding into empty square (the collide method doesn't allow this)
+ 4. Player colliding into the last pellet on a level and see if the game is won
  
  #### Exercise-8
  To test the randomMove() method the idea should be that given adjacent accessible squares
