@@ -91,5 +91,4 @@ public class PlayerCollisions implements CollisionMap {
         pointCalculator.consumedAPellet(player, pellet);
         pellet.leaveSquare();
     }
-
 }
