@@ -44,7 +44,10 @@ public class SuspensionTest {
 
     /**
      * This test case test both scenario 4.1 and 4.2 from the doc/scenarios.md.
+     * there is a surpression of "methodlength" -> mostly comments that
+     * cause the method length to exceed the standard length.
      */
+    @SuppressWarnings({"methodlength"})
     @Test
     void suspensionAndResumptionTest() {
         // We first test scenario 4.1 : Suspend the game.
@@ -64,8 +67,16 @@ public class SuspensionTest {
         game.stop();
 
         // Then  all moves from ghosts and the player are suspended.
+        // we know from  the source code that when stop() method
+        // from Game class is invoked, stopNPCs() from Level class is also invoked
+        // which means ghost moves are suspended
+        // Furthermore the start() from game will not allow
+        // player to move if isInProgress() returns FALSE (asserted below)
         // code for verifying what is mentioned above.
         assertThat(game.isInProgress()).isFalse();
+
+
+//        Mockito.verify(game.getLevel(), Mockito.times(1)).
 
         // Now we test : Scenario S4.2: Restart the game.
 
