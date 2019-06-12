@@ -10,19 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//    As a player,
-//    I want to be able to suspend the game;
-//    So  that I can pause and do something else.
-//
-//    Scenario S4.1: Suspend the game.
-//    Given the game has started;
-//    When  the player clicks the "Stop" button;
-//    Then  all moves from ghosts and the player are suspended.
-//
-//    Scenario S4.2: Restart the game.
-//    Given the game is suspended;
-//    When  the player hits the "Start" button;
-//    Then  the game is resumed.
 //import nl.tudelft.jpacman.board.Direction;
 
 /**
@@ -79,5 +66,17 @@ public class SuspensionTest {
         // Then  all moves from ghosts and the player are suspended.
         // code for verifying what is mentioned above.
         assertThat(game.isInProgress()).isFalse();
+
+        // Now we test : Scenario S4.2: Restart the game.
+
+        // Given the game is suspended;
+        // We already know that the game is suspended
+        // from the previous assertion see line 68
+
+        // When  the player hits the "Start" button;
+        game.start();
+
+        // Then  the game is resumed.
+        assertThat(game.isInProgress()).isTrue();
     }
 }
