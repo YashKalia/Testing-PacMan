@@ -45,6 +45,13 @@ then we will have to eat all pellets except the last pellet,
 
 #### Exercise 5
 
+All the scenarios in user story 3 are hard to test because:
+We don't have control over when "a tick event" occurs and 
+it is hard to bring the game to the exact states that are specified in 
+the "Given ( + and)" clauses of the scenarios  (Thus, a lack of controllability).
+The explanation about the movement of ghost which makes scenario 2.4 (see that part in answer to exercise 3) 
+difficult to test is also a valid reason for why writing test conditions for the scenario's of user story 3 
+is difficult. 
 
 #### Exercise 6
 
