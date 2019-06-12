@@ -1,7 +1,6 @@
 package nl.tudelft.jpacman.integration.playerMoves;
 
 import nl.tudelft.jpacman.Launcher;
-import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.game.Game;
@@ -12,12 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-//As a player,
-//    I want to move my Pacman around on the board;
-//    So that I can earn all points and win the game.
-
-
 //    Scenario S2.4: The player dies
 //    Given the game has started,
 //    and  my Pacman is next to a cell containing a ghost;
@@ -28,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 //    Scenario S2.5: Player wins, extends S2.1
 //    When  I have eaten the last pellet;
 //    Then  I win the game.
-
 /**
  * Test class for testing user story 2 : Move the Player.
  */
@@ -180,8 +172,8 @@ public class PlayerMovesTest {
         //    When  I press an arrow key towards that cell;
         game.move(player, Direction.NORTH);
 
-        //    Then  the move is not conducted
-        //    & pacman will still be on the square it occupied before moving in the direction of wall
+        //    Then  the move is not conducted,
+        //    pacman will still be on the square it occupied before moving in the direction of wall
         assertThat(wallNorthSquare.isAccessibleTo(player)).isFalse();
         assertThat(wallNorthSquare.getOccupants().contains(player)).isFalse();
         assertThat(playerStartSquare.getOccupants().contains(player)).isTrue();
