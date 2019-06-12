@@ -1,7 +1,7 @@
 package nl.tudelft.jpacman.integration.suspension;
 
 import nl.tudelft.jpacman.Launcher;
-import nl.tudelft.jpacman.board.Direction;
+
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
 import org.junit.jupiter.api.AfterEach;
@@ -23,14 +23,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 //    Given the game is suspended;
 //    When  the player hits the "Start" button;
 //    Then  the game is resumed.
+//import nl.tudelft.jpacman.board.Direction;
 
 /**
- * Test class for testing user story 4 from doc/scenarios.md
+ * Test class for testing user story 4 from doc/scenarios.md.
  */
 public class SuspensionTest {
 
     // the Board file's content is copied from board/txt in main folder.
-    private final String fileName = "/Board.txt";
+    private static final String FILENAME = "/Board.txt";
     private Launcher launcher;
 
     /**
@@ -40,7 +41,7 @@ public class SuspensionTest {
     @BeforeEach
     void setUpPacman() {
         launcher = new Launcher();
-        launcher.withMapFile(fileName);
+        launcher.withMapFile(FILENAME);
         launcher.launch();
     }
 
@@ -57,7 +58,6 @@ public class SuspensionTest {
     /**
      * This test case test both scenario 4.1 and 4.2 from the doc/scenarios.md.
      */
-//    @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
     @Test
     void suspensionAndResumptionTest() {
         // We first test scenario 4.1 : Suspend the game.
