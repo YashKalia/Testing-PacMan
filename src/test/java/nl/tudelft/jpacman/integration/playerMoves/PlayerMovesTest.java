@@ -17,10 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 //    When  I press an arrow key towards that square;
 //    Then  my Pacman dies,
 //    and  the game is over.
-//
-//    Scenario S2.5: Player wins, extends S2.1
-//    When  I have eaten the last pellet;
-//    Then  I win the game.
+
 /**
  * Test class for testing user story 2 : Move the Player.
  */
@@ -177,5 +174,37 @@ public class PlayerMovesTest {
         assertThat(wallNorthSquare.isAccessibleTo(player)).isFalse();
         assertThat(wallNorthSquare.getOccupants().contains(player)).isFalse();
         assertThat(playerStartSquare.getOccupants().contains(player)).isTrue();
+    }
+
+    /**
+     * This tests : Scenario S2.5: Player wins, extends S2.1.
+     */
+    @Test
+    @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
+    void eatLastPelletAndWinTest() {
+        launcher.withMapFile("/OnePelletMap.txt");
+        launcher.launch();
+        Game game = launcher.getGame();
+        Player player = game.getPlayers().get(0);
+        Square playerStartSquare = player.getSquare();
+        Square lastPelletEastSquare = playerStartSquare.getSquareAt(Direction.EAST);
+        Pellet lastPellet = (Pellet) lastPelletEastSquare.getOccupants().get(0);
+
+        //start the game
+        game.start();
+
+        //    When  I have eaten the last pellet;
+        //--- We see in  the OnePelletMap.txt that the last pellet is to the EAST
+        //    of the player. Hence the player should move to EAST/
+        assertThat(game.getLevel().remainingPellets()).isEqualTo(1);
+        assertThat(lastPelletEastSquare.getOccupants().contains(lastPellet)).isTrue();
+        game.move(player, Direction.EAST);
+        assertThat(game.getLevel().remainingPellets()).isZero();
+
+        //    Then  I win the game.
+        //    when the game is won the game stops
+        assertThat(game.isInProgress()).isFalse();
+        assertThat(player.isAlive()).isTrue();
+        assertThat(player.getKiller()).isNull();
     }
 }

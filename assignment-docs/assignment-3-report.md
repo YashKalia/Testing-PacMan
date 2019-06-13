@@ -37,9 +37,6 @@ then we will have to eat all pellets except the last pellet,
  Thus, we can conclude that there is a lack of controllability which makes testing
  this scenario difficult (if using the provided level that is made using the  provided board.txt)
  
-
-
-
 #### Exercise 4
 
 
