@@ -6,17 +6,12 @@ import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Pellet;
 import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.npc.Ghost;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//    Scenario S2.4: The player dies
-//    Given the game has started,
-//    and  my Pacman is next to a cell containing a ghost;
-//    When  I press an arrow key towards that square;
-//    Then  my Pacman dies,
-//    and  the game is over.
 
 /**
  * Test class for testing user story 2 : Move the Player.
@@ -35,6 +30,12 @@ public class PlayerMovesTest {
 
     // Here you can take a look at the content of
     // GhostMap.txt without going to resource folder :
+    //     #####
+    //     ## ##
+    //     # PG#
+    //     #####
+    //     ##.##
+    //     #####
 
     // Here you can take a look at the content of
     // OnePelletMap.txt without going to resource folder :
@@ -67,7 +68,7 @@ public class PlayerMovesTest {
     @Test
     @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
     void playerEatsPelletTest() {
-        launcher.withMapFile("/SmallMap.txt");
+        launcher = launcher.withMapFile("/SmallMap.txt");
         launcher.launch();
         Game game = launcher.getGame();
         Player player = game.getPlayers().get(0);
@@ -108,7 +109,7 @@ public class PlayerMovesTest {
     @Test
     @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
     void playerMoveToEmptySquareTest() {
-        launcher.withMapFile("/SmallMap.txt");
+        launcher = launcher.withMapFile("/SmallMap.txt");
         launcher.launch();
         Game game = launcher.getGame();
         Player player = game.getPlayers().get(0);
@@ -147,7 +148,7 @@ public class PlayerMovesTest {
     @Test
     @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
     void playerTriesToMoveToWallTest() {
-        launcher.withMapFile("/SmallMap.txt");
+        launcher = launcher.withMapFile("/SmallMap.txt");
         launcher.launch();
         Game game = launcher.getGame();
         Player player = game.getPlayers().get(0);
@@ -162,9 +163,6 @@ public class PlayerMovesTest {
         //--- We can see in SmallMap.txt that there is a cell to the North
         //    of the player's square that contains a wall.
         Square wallNorthSquare = playerStartSquare.getSquareAt(Direction.NORTH);
-        /**
-         * HOW TO ASSERT WALL ? assert that the sprite up north is a wall ?
-         */
 
         //    When  I press an arrow key towards that cell;
         game.move(player, Direction.NORTH);
@@ -177,12 +175,48 @@ public class PlayerMovesTest {
     }
 
     /**
+     * This tests : Scenario S2.4: The player dies.
+     */
+    @Test
+    @SuppressWarnings({"methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
+    void playerCollideWithGhostAndDiesTest() {
+        // Here we use the GhostMap.txt where there is a ghost to the EAST of the Player.
+        launcher = launcher.withMapFile("/GhostMap.txt");
+        launcher.launch();
+        Game game = launcher.getGame();
+
+        Player player = game.getPlayers().get(0);
+
+        Square playerStartSquare = player.getSquare();
+        // the following square is the square next to the player
+        Square ghostEastSquare = playerStartSquare.getSquareAt(Direction.EAST);
+        Ghost ghost = (Ghost) ghostEastSquare.getOccupants().get(0);
+
+        //    Given the game has started,
+        game.start();
+
+        //    and  my Pacman is next to a cell containing a ghost;
+        assertThat(ghostEastSquare.getOccupants().get(0) instanceof Ghost).isTrue();
+        assertThat(ghostEastSquare.getOccupants().get(0)).isEqualTo(ghost);
+
+        //    When  I press an arrow key towards that square;
+        game.move(player, Direction.EAST);
+
+        //    Then  my Pacman dies,
+        //    and  the game is over.
+        assertThat(player.getKiller()).isEqualTo(ghost);
+        assertThat(game.getLevel().isAnyPlayerAlive()).isFalse();
+        assertThat(player.isAlive()).isFalse();
+        assertThat(game.isInProgress()).isFalse();
+    }
+
+    /**
      * This tests : Scenario S2.5: Player wins, extends S2.1.
      */
     @Test
     @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
     void eatLastPelletAndWinTest() {
-        launcher.withMapFile("/OnePelletMap.txt");
+        launcher = launcher.withMapFile("/OnePelletMap.txt");
         launcher.launch();
         Game game = launcher.getGame();
         Player player = game.getPlayers().get(0);
@@ -205,6 +239,7 @@ public class PlayerMovesTest {
         //    when the game is won the game stops
         assertThat(game.isInProgress()).isFalse();
         assertThat(player.isAlive()).isTrue();
+        assertThat(game.getLevel().isAnyPlayerAlive()).isTrue();
         assertThat(player.getKiller()).isNull();
     }
 }
