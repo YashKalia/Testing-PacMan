@@ -58,6 +58,33 @@ is difficult.
 
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122285743374337/unknown.png">
 
+#### Exercise 8
+
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589124840091549713/unknown.png">
+
+Test cases for (state, event) pairs not in the transition table above :
+1. (Actually playing the game, Start button clicked)
+2. (First time launched GUI, Stop button clicked)
+3. (First time launched GUI, Press arrow key)
+4. (First time launched GUI, Player eats last pellet)
+5. (First time launched GUI, Collision with a ghost)
+6. (Paused State, Stop button clicked)
+7. (Paused State, Press arrow key)
+8. (Paused State, Player eats last pellet)
+9. (Paused State, Collision with a ghost)
+10. (Game Lost, Start button clicked)
+11. (Game Lost, Stop button clicked)
+12. (Game Lost, Press arrow key)
+13. (Game Lost, Player eats last pellet)
+14. (Game Lost, Collision with a ghost)
+15. (Game Won, Start button clicked)
+16. (Game Won, Stop button clicked)
+17. (Game Won, Press arrow key)
+18. (Game Won, Player eats last pellet)
+19. (Game Won, Collision with a ghost)
+
+All of the state event pairs above are good for different sneaky path test cases.
+
 #### Exercise 9
 
 
