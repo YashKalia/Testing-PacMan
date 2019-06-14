@@ -21,7 +21,7 @@ For scenario 2.4. it's harder to create system test cases because :
    when the player has moved to the square where the ghost is assumed to be. 
    Furthermore, there are different ghosts
    each with different implementations of nextAIMove() which further decreases 
-   our controllability and reapetability of the test. 
+   our controllability and repeatability of the test. 
    
 For scenario 2.5. it's harder to create system test cases because :
 
@@ -52,11 +52,8 @@ is difficult.
 
 #### Exercise 6
 
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122154134503455/unknown.png">
 
-#### Exercise 7
-
-
-#### Exercise 8
 
 
 #### Exercise 9
@@ -104,7 +101,6 @@ When  I click start button,
 Then  No new levels will be available for playing.
 ```
 
-#### Exercise 11
 
 
 #### Exercise 12
