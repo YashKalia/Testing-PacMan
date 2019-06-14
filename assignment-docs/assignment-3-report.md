@@ -54,7 +54,9 @@ is difficult.
 
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122154134503455/unknown.png">
 
+#### Exercise 7
 
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122285743374337/unknown.png">
 
 #### Exercise 9
 
