@@ -130,7 +130,15 @@ When  I click start button,
 Then  No new levels will be available for playing.
 ```
 
+#### Exercise 11
 
+The state machine model for multi-level game:
+
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122447085797420/unknown.png">
+
+The transition tree for the state machine model above:
+
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122589704716298/unknown.png">
 
 #### Exercise 12
 
