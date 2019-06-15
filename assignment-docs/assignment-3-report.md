@@ -1,10 +1,10 @@
 ## Assignment 3
 
 #### Exercise 1
-
+The tests written for this exercise can be found in the test class With the following path : **TODO**
  
 #### Exercise 2
-
+The tests written for this exercise can be found in the test class With the following path : **TODO**
 
 #### Exercise 3  
 
@@ -36,6 +36,7 @@ etc,
  
 #### Exercise 4
 
+The tests written for this exercise can be found in the test class With the following path : **TODO**
 
 #### Exercise 5
 
@@ -58,7 +59,7 @@ each with different implementations of nextAIMove() which further decreases our
 
 #### Exercise 7
 
-<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122285743374337/unknown.png">
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589390412964298752/unknown.png">
 
 #### Exercise 8
 
@@ -88,7 +89,8 @@ Test cases for (state, event) pairs not in the transition table above :
 All of the state event pairs above are good for different sneaky path test cases.
 
 #### Exercise 9
-
+Due to exercise 15 all of the tests written for this exercise can be found in the test class with the following path:
+**TODO**
 
 #### Exercise 10
 
@@ -140,25 +142,41 @@ The state machine model for multi-level game:
 
 The transition tree for the state machine model above:
 
-<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122589704716298/unknown.png">
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/589391515982233610/unknown.png">
 
 #### Exercise 12
 
+For easability of testing common behaviour of MultiLevelGame and SinglePlayerGame 
+(such that we can make a test be usable for both MultiLevelGame and SinglePlayerGame (see exercise 15)):
+The stateMachine for SinglePlayerGame (derived at exercise 6) will now be same as the state machine in  **exercise 11** but  with the following differences :
+1. The event in the (Level Won, Player has won all levels) pair will have it's condition changed from
+   "/Level == 3" to "/Level == 1"
+2. The event in the (Level Won, Start button clicked) will not  be present in the state machine of SiniglePlayerGame.
 
-#### Exercise 13
+This way the test cases that are derived from the blue, red, green and black leaves in  the transition tree
+in  **exercisse 11** can be used for both SinglePlayer- and MultiLevelGame.
 
+The test case derived from the yellow leaf will be specific for MultiLevelGame and not for SinglePlayerGame.
+(This test can be found the in test class with the following path : **TODO** ) 
 
-#### Exercise 14
+All 19 of the specified sneaky path test cases in exercise 8 will be applicable for both SinglePlayer- and MultiLevelGame
 
+#### Exercise 13 & 14
+You can verify that what is asked by this exercise is indeed done by taking a look at the 
+MultiLevelLauncher class that has the following path :  **TODO**
 
 #### Exercise 15
-
+The tests written for this exercise can be found in the test class With the following path : **TODO**
 
 #### Exercise 16
-
+The tests specific to MultiLevelGame can be found the in test class with the following path : **TODO** 
 
 #### Exercise 17
-
+Implementation in
+MultiLevelGame :
+MultiLevelLauncher :
+Game :
+SinglePlayerGame :
 
 #### Exercise 18
 
