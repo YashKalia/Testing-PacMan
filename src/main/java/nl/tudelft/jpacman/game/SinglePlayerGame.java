@@ -55,4 +55,14 @@ public class SinglePlayerGame extends Game {
     public Level getLevel() {
         return level;
     }
+
+    @Override
+    public boolean lastLevelReached() {
+        return true;
+    }
+
+    @Override
+    public boolean allLevelsWon() {
+        return this.getLevel().remainingPellets() == 0;
+    }
 }

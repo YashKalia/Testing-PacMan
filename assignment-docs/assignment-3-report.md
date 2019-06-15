@@ -89,6 +89,8 @@ Test cases for (state, event) pairs not in the transition table above :
 All of the state event pairs above are good for different sneaky path test cases.
 
 #### Exercise 9
+All of the non empty cells in  the transition table will be covered if we test all the paths in the transition tree therefore 
+there is no need to test the non empty cells in  the transition table again.
 Due to exercise 15 all of the tests written for this exercise can be found in the test class with the following path:
 **TODO**
 
@@ -144,6 +146,8 @@ The transition tree for the state machine model above:
 
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589391515982233610/unknown.png">
 
+The new transition table will be the following :
+<img src = "https://cdn.discordapp.com/attachments/546025287939391508/589417542637060137/unknown.png">
 #### Exercise 12
 
 For easability of testing common behaviour of MultiLevelGame and SinglePlayerGame 
@@ -153,13 +157,21 @@ The stateMachine for SinglePlayerGame (derived at exercise 6) will now be same a
    "/Level == 3" to "/Level == 1"
 2. The event in the (Level Won, Start button clicked) will not  be present in the state machine of SiniglePlayerGame.
 
-This way the test cases that are derived from the blue, red, green and black leaves in  the transition tree
-in  **exercisse 11** can be used for both SinglePlayer- and MultiLevelGame.
+This way the test cases that are derived from the red, green and black leaves in  the transition tree
+in  **exercise 11** can be used for both SinglePlayer- and MultiLevelGame.
 
 The test case derived from the yellow leaf will be specific for MultiLevelGame and not for SinglePlayerGame.
 (This test can be found the in test class with the following path : **TODO** ) 
 
-All 19 of the specified sneaky path test cases in exercise 8 will be applicable for both SinglePlayer- and MultiLevelGame
+The test case derived from the blue leaf will be different for both MultiLevelGame and SinglePlayerGame because they have 
+different number of levels (Multilevel needs 3 levels to be cleared). Find these specific tests in : **TODO**
+
+Single player game will have the same transition table as the one in **exercise 11** but without (level won, start button clicked) this is a 
+specific sneaky path test case for SinglePlayer Game but nit for MultiLevelGame. (This test can be found the in test class with the following path : **TODO** )
+
+Due to the small changes in state machine model  the most of the empty cells (for sneaky path testing)
+in the transition table in exercise  11 will apply to both version of games
+, but **not** all. 
 
 #### Exercise 13 & 14
 You can verify that what is asked by this exercise is indeed done by taking a look at the 
@@ -177,6 +189,7 @@ MultiLevelGame :
 MultiLevelLauncher :
 Game :
 SinglePlayerGame :
+GameFactory : createMultiLevelGame method
 
 #### Exercise 18
 

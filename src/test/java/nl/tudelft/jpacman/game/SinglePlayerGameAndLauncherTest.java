@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.game;
 
 import nl.tudelft.jpacman.Launcher;
+import org.junit.jupiter.api.Test;
 
 /**
  * Testing MultiLevelGame and MultiLevelLauncher.
@@ -13,6 +14,11 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
     @Override
     public Launcher getLauncherTestSubject() {
         return new Launcher();
+    }
+
+    @Test
+    void SinglePlayerBlueLeafPathTest() {
+
     }
 
 }

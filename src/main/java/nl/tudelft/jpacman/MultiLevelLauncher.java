@@ -54,6 +54,14 @@ public class MultiLevelLauncher extends Launcher {
         return list;
     }
 
+    /**
+     * provide the name of the files containing the maps.
+     * @param fileNamesofLevels
+     */
+    public void setFileNamesofLevels(List<String> fileNamesofLevels) {
+        this.fileNamesofLevels = fileNamesofLevels;
+    }
+
     @Override
     public MultiLevelLauncher withMapFile(String fileName) {
         ArrayList<String> list = new ArrayList<>();

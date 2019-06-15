@@ -22,7 +22,7 @@ public class MultiLevelGame extends Game {
     private final Player player;
 
     /**
-     * The level of this game.
+     * The current level of this game.
      */
     private Level level;
 
@@ -93,6 +93,7 @@ public class MultiLevelGame extends Game {
         if ((!lastLevelReached()) && level.remainingPellets() == 0) {
             this.level = levels.get(currentLevelNumber + 1);
             this.currentLevelNumber++;
+            this.level.registerPlayer(getPlayers().get(0));
         }
     }
 
@@ -100,6 +101,7 @@ public class MultiLevelGame extends Game {
      * Boolean signifying if we are at last level.
      * @return true for last level reached, false otherwise;
      */
+    @Override
     public boolean lastLevelReached() {
         return currentLevelNumber == totalLevels - 1;
     }
@@ -113,4 +115,14 @@ public class MultiLevelGame extends Game {
     public Level getLevel() {
         return level;
     }
+
+    @Override
+    public boolean allLevelsWon() {
+        return this.getLevel().remainingPellets() == 0;
+    }
+
+//    @Override
+//    public void levelWon() {
+//        stop();
+//    }
 }
