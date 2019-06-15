@@ -81,6 +81,10 @@ public abstract class GameAndLauncherTest {
         assertThat(player.isAlive()).isTrue();
     }
 
+    public void checkGameWonState(Game game) {
+        assertThat(game.lastLevelReached()).isTrue();
+        assertThat(game.allLevelsWon()).isTrue();
+    }
     @Test
     void redLeafPathTest() {
         launcher.withMapFile("/redLeaf.txt");

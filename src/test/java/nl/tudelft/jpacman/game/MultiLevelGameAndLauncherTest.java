@@ -70,6 +70,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         //observing that we are indeed at "Actually Playing the Game / Not Paused" state
         checkAtNotPausedState(game, level, player);
+        assertThat(game.getCurrentLevelNumber() == 0).isTrue();
         Mockito.verify(game).start();
 
         //moving pacman  to the east to eat the last pellet  "Actually Playing the Game / Not Paused"
@@ -90,10 +91,79 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
         // observing properties of at "Actually Playing the Game / Not Paused" state are indeed true
         checkAtNotPausedState(game, level, player);
         assertThat(level.remainingPellets() != 0);
+        assertThat(game.getCurrentLevelNumber() == 1).isTrue();
         Mockito.verify(game, Mockito.times(2)).start();
     }
 
     @Test
     void multilevelBlueLeafPathTest() {
+        // assert that we are on the state "First Time Launched GUI"
+        checkFirstTimeLaunchedGuiState(multiLauncher);
+
+        // start button clicked event will cause transition from "First Time Launched GUI"
+        // to "Actually Playing the Game / Not Paused"
+        game.start();
+
+        //observing that we are indeed at "Actually Playing the Game / Not Paused" state
+        checkAtNotPausedState(game, level, player);
+        assertThat(game.getCurrentLevelNumber() == 0).isTrue();
+        Mockito.verify(game).start();
+
+        //moving pacman  to the east to eat the last pellet  "Actually Playing the Game / Not Paused"
+        // to "Level Won"
+        assertThat(level.remainingPellets() == 1).isTrue();
+        game.move(player, Direction.EAST);
+        assertThat(level.remainingPellets() == 0).isTrue();
+
+        // observing properties of at "Level Won" state are indeed true
+        Mockito.verify(game, Mockito.times(1)).levelWon();
+        checkLevelWonState(game, level, player);
+
+        // player clicking start button will transition "Level Won" to "Actually Playing the Game / Not Paused"
+        game.goToNextLevel();
+        game.start();
+        level = game.getLevel();
+
+        // observing properties of at "Actually Playing the Game / Not Paused" state are indeed true
+        checkAtNotPausedState(game, level, player);
+        assertThat(level.remainingPellets() != 0);
+        assertThat(game.getCurrentLevelNumber() == 1).isTrue();
+        Mockito.verify(game, Mockito.times(2)).start();
+
+        //moving pacman  to the east to eat the last pellet  "Actually Playing the Game / Not Paused"
+        // to "Level Won"
+        assertThat(level.remainingPellets() == 1).isTrue();
+        game.move(player, Direction.EAST);
+        assertThat(level.remainingPellets() == 0).isTrue();
+
+        // observing properties of at "Level Won" state are indeed true
+        Mockito.verify(game, Mockito.times(2)).levelWon();
+        checkLevelWonState(game, level, player);
+
+        // player clicking start button will transition "Level Won" to "Actually Playing the Game / Not Paused"
+        game.goToNextLevel();
+        game.start();
+        level = game.getLevel();
+
+        // observing properties of at "Actually Playing the Game / Not Paused" state are indeed true
+        checkAtNotPausedState(game, level, player);
+        assertThat(level.remainingPellets() != 0);
+        assertThat(game.getCurrentLevelNumber() == 2).isTrue();
+        Mockito.verify(game, Mockito.times(3)).start();
+
+        //moving pacman  to the east to eat the last pellet  "Actually Playing the Game / Not Paused"
+        // to "Level Won"
+        assertThat(level.remainingPellets() == 1).isTrue();
+        game.move(player, Direction.EAST);
+        assertThat(level.remainingPellets() == 0).isTrue();
+
+        // observing properties of at "Level Won" state are indeed true
+        Mockito.verify(game, Mockito.times(3)).levelWon();
+        checkLevelWonState(game, level, player);
+
+        // all levels are now cleared
+
+        // observing properties of at "Game" state are indeed true
+        checkGameWonState(game);
     }
 }

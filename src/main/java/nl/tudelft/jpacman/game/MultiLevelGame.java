@@ -116,13 +116,18 @@ public class MultiLevelGame extends Game {
         return level;
     }
 
+    /**
+     * the current level number.
+     * @return number of level;
+     */
+    public int getCurrentLevelNumber() {
+        return currentLevelNumber;
+    }
+
+
     @Override
     public boolean allLevelsWon() {
         return this.getLevel().remainingPellets() == 0;
     }
 
-//    @Override
-//    public void levelWon() {
-//        stop();
-//    }
 }
