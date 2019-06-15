@@ -56,7 +56,7 @@ public class MultiLevelLauncher extends Launcher {
 
     /**
      * provide the name of the files containing the maps.
-     * @param fileNamesofLevels
+     * @param fileNamesofLevels give the list of name of map for making levels.
      */
     public void setFileNamesofLevels(List<String> fileNamesofLevels) {
         this.fileNamesofLevels = fileNamesofLevels;
@@ -77,5 +77,4 @@ public class MultiLevelLauncher extends Launcher {
     public static void main(String[] args) {
         new MultiLevelLauncher().launch();
     }
-
 }

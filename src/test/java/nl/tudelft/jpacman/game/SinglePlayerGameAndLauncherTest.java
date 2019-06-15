@@ -21,6 +21,10 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
     private Level level;
     private Player player;
 
+    /**
+     * setting up.
+     */
+//    @Override
     @BeforeEach
     void setUp() {
         launcher = new Launcher();
@@ -36,6 +40,7 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
     /**
      * clean up after tests.
      */
+//    @Override
     @AfterEach
     void tearDown() {
         launcher.dispose();
@@ -50,20 +55,33 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
         return new Launcher();
     }
 
+
+    /**
+     * This is the test case written for the test that is derived from "blueLeaf" path.
+     * version for SinglePlayerGame.
+     * this test case can use the file that is also used for the yellow path of MultiLevelGame.
+     * Please take a look at the report of assignment 3 Exercise 12 for information,
+     * that will make clear which specific path from the transition tree this test exercises.
+     * The .....Leaf.txt file can be found in src\test\resources\yellowLeaf.txt
+     */
     @Test
-    void SinglePlayerBlueLeafPathTest() {
+    @SuppressWarnings({"magicnumber", "methodlength"})
+    void singlePlayerGameBlueLeafPathTest() {
         // assert that we are on the state "First Time Launched GUI"
         checkFirstTimeLaunchedGuiState(launcher);
 
-        // start button clicked event will cause transition from "First Time Launched GUI"
+        // start button clicked event will cause transition
+        // from "First Time Launched GUI"
         // to "Actually Playing the Game / Not Paused"
         game.start();
 
-        //observing that we are indeed at "Actually Playing the Game / Not Paused" state
+        //observing that we are indeed
+        // at "Actually Playing the Game / Not Paused" state
         checkAtNotPausedState(game, level, player);
         Mockito.verify(game).start();
 
-        //moving pacman  to the east to eat the last pellet  "Actually Playing the Game / Not Paused"
+        //moving pacman  to the East to eat the last pellet transition
+        // from "Actually Playing the Game / Not Paused"
         // to "Level Won"
         assertThat(level.remainingPellets() == 1).isTrue();
         game.move(player, Direction.EAST);
@@ -78,5 +96,4 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
         // observing properties of at "Game" state are indeed true
         checkGameWonState(game);
     }
-
 }
