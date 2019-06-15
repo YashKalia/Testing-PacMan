@@ -29,12 +29,12 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 @SuppressWarnings("PMD.TooManyMethods")
 public class Launcher {
 
-    private static final PacManSprites SPRITE_STORE = new PacManSprites();
+    protected static final PacManSprites SPRITE_STORE = new PacManSprites();
 
     public static final String DEFAULT_MAP = "/board.txt";
-    private String levelMap = DEFAULT_MAP;
+    protected String levelMap = DEFAULT_MAP;
 
-    private PacManUI pacManUI;
+    protected PacManUI pacManUI;
     private Game game;
 
     /**
@@ -78,7 +78,7 @@ public class Launcher {
         return game;
     }
 
-    private PointCalculator loadPointCalculator() {
+    protected PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
     }
 
