@@ -2,11 +2,9 @@ package nl.tudelft.jpacman;
 
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.GameFactory;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Level;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +15,11 @@ import java.util.List;
 public class MultiLevelLauncher extends Launcher {
 
     /**
-     * the game of this launcher;
+     * the game of this launcher.
      */
     private MultiLevelGame multiGame;
-    public static final List<String> DefaultFileNamesofLevels = MultiLevelLauncher.setDefault();
-    private List<String> fileNamesofLevels = DefaultFileNamesofLevels;
+    public static final List<String> DEFAULTFILENAME = MultiLevelLauncher.setDefault();
+    private List<String> fileNamesofLevels = DEFAULTFILENAME;
     private List<Level> levels = new ArrayList<Level>();
 
     @SuppressFBWarnings(
@@ -46,8 +44,12 @@ public class MultiLevelLauncher extends Launcher {
         return multiGame;
     }
 
-    public static ArrayList<String> setDefault() {
-        ArrayList<String> list = new ArrayList<>();
+    /**
+     * to always have a default filename.
+     * @return an arraylist containing default filename.
+     */
+    public static List<String> setDefault() {
+        List<String> list = new ArrayList<>();
         list.add("/board.txt");
         return list;
     }
@@ -60,8 +62,12 @@ public class MultiLevelLauncher extends Launcher {
         return this;
     }
 
+    /**
+     * launch main.
+     * @param args empty.
+     */
     public static void main(String[] args) {
-    new MultiLevelLauncher().launch();
+        new MultiLevelLauncher().launch();
     }
 
 }

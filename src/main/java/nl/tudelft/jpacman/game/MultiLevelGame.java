@@ -1,6 +1,6 @@
 package nl.tudelft.jpacman.game;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import nl.tudelft.jpacman.level.Level;
@@ -40,35 +40,42 @@ public class MultiLevelGame extends Game {
      * total number of levels.
      */
     private int totalLevels;
+
+//    /**
+//     * Create a new single player game for the provided level and player.
+//     *
+//     * @param player
+//     *            The player.
+//     * @param level
+//     *            The level.
+//     * @param pointCalculator
+//     *            The way to calculate points upon collisions.
+//     */
+//    protected MultiLevelGame(Player player, Level level, PointCalculator pointCalculator) {
+//        super(pointCalculator);
+//
+//        assert player != null;
+//        assert level != null;
+//
+//        this.player = player;
+//        this.level = level;
+//        this.level.registerPlayer(player);
+//        List<Level> list = new ArrayList<>();
+//        list.add(level);
+//        this.levels = list;
+//    }
+
     /**
-     * Create a new single player game for the provided level and player.
-     *
-     * @param player
-     *            The player.
-     * @param level
-     *            The level.
-     * @param pointCalculator
-     *            The way to calculate points upon collisions.
+     * constructor for multilevel game.
+     * @param player player that plays.
+     * @param levels list of levels.
+     * @param pointCalculator to calculate points.
      */
-    protected MultiLevelGame(Player player, Level level, PointCalculator pointCalculator) {
-        super(pointCalculator);
-
-        assert player != null;
-        assert level != null;
-
-        this.player = player;
-        this.level = level;
-        this.level.registerPlayer(player);
-        List<Level> list = new ArrayList<>();
-        list.add(level);
-        this.levels = list;
-    }
-
     protected MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
 
         assert player != null;
-        assert level != null;
+        assert levels != null;
 
         this.levels = levels;
         this.currentLevelNumber = 0;
@@ -83,7 +90,7 @@ public class MultiLevelGame extends Game {
      * Method for going to next level.
      */
     public void goToNextLevel() {
-        if((!lastLevelReached()) && level.remainingPellets() == 0) {
+        if ((!lastLevelReached()) && level.remainingPellets() == 0) {
             this.level = levels.get(currentLevelNumber + 1);
             this.currentLevelNumber++;
         }

@@ -1,10 +1,6 @@
 package nl.tudelft.jpacman.game;
 
-import nl.tudelft.jpacman.MultiLevelLauncher;
-import nl.tudelft.jpacman.game.MultiLevelGame;
-import nl.tudelft.jpacman.level.Level;
-import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.points.PointCalculator;
+import nl.tudelft.jpacman.Launcher;
 
 /**
  * Testing MultiLevelGame and MultiLevelLauncher.
@@ -15,17 +11,8 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
      * @return a Launcher to get tested.
      */
     @Override
-    public MultiLevelLauncher getLauncherTestSubject() {
-        return new MultiLevelLauncher();
+    public Launcher getLauncherTestSubject() {
+        return new Launcher();
     }
-
-//    /**
-//     * Overriding so that we will be able to test SinglePlayerGame.
-//     * @return a SinglePlayerGame to get tested.
-//     */
-//    @Override
-//    public SinglePlayerGame getGameTestSubject(Player player, Level level, PointCalculator calculator) {
-//        return new SinglePlayerGame(player, level, calculator);
-//    }
 
 }
