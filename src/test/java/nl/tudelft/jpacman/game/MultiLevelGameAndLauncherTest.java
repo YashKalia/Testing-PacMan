@@ -58,11 +58,11 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
      * The .....Leaf.txt file can be found in src\test\resources\yellowLeaf.txt
      */
     @Test
-    @SuppressWarnings({"magicnumber", "methodlength"})
+    @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
     void yellowLeafPathTest() {
         setUpMultiLevelGame();
         // assert that we are on the state "First Time Launched GUI"
-        checkFirstTimeLaunchedGuiState(multiLauncher);
+        assertThat(checkFirstTimeLaunchedGuiState(multiLauncher, game, level,  player)).isTrue();
 
         // start button clicked event will cause transition
         // from "First Time Launched GUI"
@@ -71,7 +71,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         //observing that we are indeed at "
         // Actually Playing the Game / Not Paused" state
-        checkAtNotPausedState(game, level, player);
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isTrue();
         assertThat(game.getCurrentLevelNumber() == 0).isTrue();
         Mockito.verify(game).start();
 
@@ -84,7 +84,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of at "Level Won" state are indeed true
         Mockito.verify(game, Mockito.times(1)).levelWon();
-        checkLevelWonState(game, level, player);
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
 
         // player clicking start button will transition "Level Won"
         // to "Actually Playing the Game / Not Paused"
@@ -94,7 +94,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of at
         // "Actually Playing the Game / Not Paused" state are indeed true
-        checkAtNotPausedState(game, level, player);
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isTrue();
         assertThat(level.remainingPellets() != 0);
         assertThat(game.getCurrentLevelNumber() == 1).isTrue();
         Mockito.verify(game, Mockito.times(2)).start();
@@ -116,7 +116,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
         setUpMultiLevelGame();
 
         // assert that we are on the state "First Time Launched GUI"
-        checkFirstTimeLaunchedGuiState(multiLauncher);
+        assertThat(checkFirstTimeLaunchedGuiState(multiLauncher, game, level,  player)).isTrue();
 
         // start button clicked event will cause transition
         // from "First Time Launched GUI"
@@ -125,7 +125,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         //observing that we are indeed
         // at "Actually Playing the Game / Not Paused" state
-        checkAtNotPausedState(game, level, player);
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isTrue();
         assertThat(game.getCurrentLevelNumber() == 0).isTrue();
         Mockito.verify(game).start();
 
@@ -138,7 +138,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of at "Level Won" state are indeed true
         Mockito.verify(game, Mockito.times(1)).levelWon();
-        checkLevelWonState(game, level, player);
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
 
         // player clicking start button will transition "Level Won"
         // to "Actually Playing the Game / Not Paused"
@@ -148,7 +148,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of
         // at "Actually Playing the Game / Not Paused" state are indeed true
-        checkAtNotPausedState(game, level, player);
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isTrue();
         assertThat(level.remainingPellets() != 0);
         assertThat(game.getCurrentLevelNumber() == 1).isTrue();
         Mockito.verify(game, Mockito.times(2)).start();
@@ -162,7 +162,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of at "Level Won" state are indeed true
         Mockito.verify(game, Mockito.times(2)).levelWon();
-        checkLevelWonState(game, level, player);
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
 
         // player clicking start button will transition "Level Won"
         // to "Actually Playing the Game / Not Paused"
@@ -172,7 +172,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of
         // at "Actually Playing the Game / Not Paused" state are indeed true
-        checkAtNotPausedState(game, level, player);
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isTrue();
         assertThat(level.remainingPellets() != 0);
         assertThat(game.getCurrentLevelNumber() == 2).isTrue();
         Mockito.verify(game, Mockito.times(3)).start();
@@ -186,12 +186,60 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of at "Level Won" state are indeed true
         Mockito.verify(game, Mockito.times(3)).levelWon();
-        checkLevelWonState(game, level, player);
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
 
         // all levels are now cleared
 
         // observing properties of at "Game" state are indeed true
-        checkGameWonState(game);
+        assertThat(checkGameWonState(game)).isTrue();
 
+    }
+
+    /**
+     * This test method tests all of the sneaky path cells corresponding to.
+     * the (State, event) - pair:  (Level Won, { "Stop button clicked",
+     * "Press Arrow Key", "Player eats last Pellet", "Collision With a Ghost", "All levels won"})
+     * It easier to test all of the events that should  lead to any other State in one method
+     * rather than in lots of methods that test only one event,
+     * because this minimizes repeating code.
+     */
+    @Test
+    @SuppressWarnings({"methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
+    void sneakyPathLevelWonMultiLevelGame() {
+        setUpMultiLevelGame();
+
+        // actions for getting to levelWon State
+        game.start();
+        game.move(player, Direction.EAST);
+
+        // check that we are at level Won state
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
+
+        // event : check if all levels are won
+        // this will be false because only 1 level is cleared
+        // but regardless we are still at level won state
+        game.allLevelsWon();
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isFalse();
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
+
+        // event player presses arrow key
+        game.move(player, Direction.EAST);
+        // still in level won state
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isFalse();
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
+
+        //event : press stop button
+        game.stop();
+        // still in level won state
+        assertThat(checkAtActuallyPlayingState(game, level, player)).isFalse();
+        assertThat(checkLevelWonState(game, level, player)).isTrue();
+
+
+        // because we are in the level won state ghosts can't move (game not in progress)
+        // , players can move to eat pellets
+        // therefore "Player eats last Pellet", "Collision With a Ghost" events cannot take place
+        // those events can only take place in "Actually playing stated / not paused"
+        // we have checked already that we are not in that state with
+        // "assertThat(checkAtActuallyPlayingState(game, level, player)).isFalse();"
     }
 }

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//import nl.tudelft.jpacman.board.Direction;
 
 /**
  * Test class for testing user story 4 from doc/scenarios.md.

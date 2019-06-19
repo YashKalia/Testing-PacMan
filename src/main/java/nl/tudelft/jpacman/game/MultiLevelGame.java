@@ -41,29 +41,6 @@ public class MultiLevelGame extends Game {
      */
     private int totalLevels;
 
-//    /**
-//     * Create a new single player game for the provided level and player.
-//     *
-//     * @param player
-//     *            The player.
-//     * @param level
-//     *            The level.
-//     * @param pointCalculator
-//     *            The way to calculate points upon collisions.
-//     */
-//    protected MultiLevelGame(Player player, Level level, PointCalculator pointCalculator) {
-//        super(pointCalculator);
-//
-//        assert player != null;
-//        assert level != null;
-//
-//        this.player = player;
-//        this.level = level;
-//        this.level.registerPlayer(player);
-//        List<Level> list = new ArrayList<>();
-//        list.add(level);
-//        this.levels = list;
-//    }
 
     /**
      * constructor for multilevel game.
@@ -127,7 +104,7 @@ public class MultiLevelGame extends Game {
 
     @Override
     public boolean allLevelsWon() {
-        return this.getLevel().remainingPellets() == 0;
+        return this.getLevel().remainingPellets() == 0 && this.lastLevelReached();
     }
 
 }
