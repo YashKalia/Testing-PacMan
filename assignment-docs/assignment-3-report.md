@@ -25,6 +25,9 @@ For scenario 2.4. it's harder to create system test cases because :
    Furthermore, there are different ghosts
    each with different implementations of nextAIMove() which further decreases 
    our controllability and repeatability of the test. 
+   For example Clyde moves in a different manner that Inky and thus it would become difficult to simulate induvisually
+   how the different ghosts would move(based on the nextAImove()) if Pacman was next to them.
+
    
 For scenario 2.5. it's harder to create system test cases because :
 
@@ -38,7 +41,8 @@ etc,
  collision with all the different ghost (each move differently) etc, 
  just so that we have the right condition/state needed for scenario 2.5.
  Thus, we can conclude that there is a lack of controllability which makes testing
- this scenario difficult
+ this scenario difficult. Furthermore, for the tests to succeed we also have to make sure that PacMan does not eaten
+ each and every time the test runs and that the game is working as the test needs.
  
 #### Exercise 4
 
