@@ -1,10 +1,15 @@
 ## Assignment 3
 
+All txt-files used by the withMapFile method can be found in :
+src\test\resources
+
 #### Exercise 1
-The tests written for this exercise can be found in the test class With the following path : **TODO**
+The tests written for this exercise can be found in the test class With the following path : 
+src\test\java\nl\tudelft\jpacman\integration\suspension\SuspensionTest.java
  
 #### Exercise 2
-The tests written for this exercise can be found in the test class With the following path : **TODO**
+The tests written for this exercise can be found in the test class With the following path : 
+src\test\java\nl\tudelft\jpacman\integration\playerMoves\PlayerMovesTest.java
 
 #### Exercise 3  
 
@@ -20,6 +25,7 @@ For scenario 2.4. it's harder to create system test cases because :
    Furthermore, there are different ghosts
    each with different implementations of nextAIMove() which further decreases 
    our controllability and repeatability of the test. 
+   
 For scenario 2.5. it's harder to create system test cases because :
 
 If we start the test case where the level/map is made with board.txt : 
@@ -36,7 +42,8 @@ etc,
  
 #### Exercise 4
 
-The tests written for this exercise can be found in the test class With the following path : **TODO**
+The tests written for this exercise can be found in the test class With the following path : 
+src\test\java\nl\tudelft\jpacman\integration\playerMoves\PlayerMovesTest.java
 
 #### Exercise 5
 
@@ -92,7 +99,7 @@ All of the state event pairs above are good for different sneaky path test cases
 All of the non empty cells in  the transition table will be covered if we test all the paths in the transition tree therefore 
 there is no need to test the non empty cells in  the transition table again.
 Due to exercise 15 all of the tests written for this exercise can be found in the test class with the following path:
-**TODO**
+src\test\java\nl\tudelft\jpacman\game\GameAndLauncherTest.java
 
 #### Exercise 10
 
@@ -142,6 +149,7 @@ The state machine model for multi-level game:
 
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122447085797420/unknown.png">
 
+
 The transition tree for the state machine model above:
 
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589391515982233610/unknown.png">
@@ -161,13 +169,22 @@ This way the test cases that are derived from the red, green and black leaves in
 in  **exercise 11** can be used for both SinglePlayer- and MultiLevelGame.
 
 The test case derived from the yellow leaf will be specific for MultiLevelGame and not for SinglePlayerGame.
-(This test can be found the in test class with the following path : **TODO** ) 
+(This test called "yellowLeafPathTest()" can be found the in test class with the following path : 
+src\test\java\nl\tudelft\jpacman\game\MultiLevelGameAndLauncherTest.java ) 
 
 The test case derived from the blue leaf will be different for both MultiLevelGame and SinglePlayerGame because they have 
-different number of levels (Multilevel needs 3 levels to be cleared). Find these specific tests in : **TODO**
+different number of levels (Multilevel needs 3 levels to be cleared). 
 
-Single player game will have the same transition table as the one in **exercise 11** but without (level won, start button clicked) this is a 
-specific sneaky path test case for SinglePlayer Game but nit for MultiLevelGame. (This test can be found the in test class with the following path : **TODO** )
+Find the specific test called "singlePlayerGameBlueLeafPathTest()"for SingelPlayerGame in : 
+src\test\java\nl\tudelft\jpacman\game\SinglePlayerGameAndLauncherTest.java
+
+Find the specific test called "multilevelBlueLeafPathTest()"for MultiLevelGame in : 
+src\test\java\nl\tudelft\jpacman\game\MultiLevelGameAndLauncherTest.java
+
+
+Single player game will have the same transition table as the one in **exercise 11** but without the (state, event) pair
+(level won, start button clicked) this is a specific sneaky path test case for SinglePlayer Game but not for MultiLevelGame. (
+This test can be found the in test class with the following path : **TODO** )
 
 Due to the small changes in state machine model  the most of the empty cells (for sneaky path testing)
 in the transition table in exercise  11 will apply to both version of games
@@ -175,21 +192,29 @@ in the transition table in exercise  11 will apply to both version of games
 
 #### Exercise 13 & 14
 You can verify that what is asked by this exercise is indeed done by taking a look at the 
-MultiLevelLauncher class that has the following path :  **TODO**
+MultiLevelLauncher class that has the following path :  src\main\java\nl\tudelft\jpacman\MultiLevelLauncher.java
 
 #### Exercise 15
-The tests written for this exercise can be found in the test class With the following path : **TODO**
+The tests written for this exercise can be found in the test class With the following path : 
+src\test\java\nl\tudelft\jpacman\game\GameAndLauncherTest.java
 
 #### Exercise 16
-The tests specific to MultiLevelGame can be found the in test class with the following path : **TODO** 
+The tests specific to MultiLevelGame can be found the in test class with the following path :  
+src\test\java\nl\tudelft\jpacman\game\MultiLevelGameAndLauncherTest.java
 
 #### Exercise 17
 Implementation in
+
 MultiLevelGame :
+
 MultiLevelLauncher :
+
 Game :
+
 SinglePlayerGame :
-GameFactory : createMultiLevelGame method
+
+GameFactory :
+ createMultiLevelGame method
 
 #### Exercise 18
 

@@ -4,7 +4,6 @@ import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -40,13 +39,6 @@ public abstract class GameAndLauncherTest {
         launcher = Mockito.spy(getLauncherTestSubject());
     }
 
-    /**
-     * clean up after tests.
-     */
-    @AfterEach
-    void tearDown() {
-        launcher.dispose();
-    }
 
     /**
      *  Observing if we are actually in the state "Actually Playing the game / Not Paused".

@@ -4,8 +4,6 @@ import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -24,9 +22,7 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
     /**
      * setting up.
      */
-//    @Override
-    @BeforeEach
-    void setUp() {
+    void setUpSinglePlayerGame() {
         launcher = new Launcher();
         launcher.withMapFile("/yellowLeaf.txt");
         launcher = Mockito.spy(launcher);
@@ -37,14 +33,6 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
 
     }
 
-    /**
-     * clean up after tests.
-     */
-//    @Override
-    @AfterEach
-    void tearDown() {
-        launcher.dispose();
-    }
 
     /**
      * Overriding so that we will be able to test Launcher.
@@ -67,6 +55,8 @@ public class SinglePlayerGameAndLauncherTest extends GameAndLauncherTest {
     @Test
     @SuppressWarnings({"magicnumber", "methodlength"})
     void singlePlayerGameBlueLeafPathTest() {
+        setUpSinglePlayerGame();
+
         // assert that we are on the state "First Time Launched GUI"
         checkFirstTimeLaunchedGuiState(launcher);
 

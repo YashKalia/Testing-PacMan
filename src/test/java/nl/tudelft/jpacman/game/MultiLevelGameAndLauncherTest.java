@@ -4,8 +4,6 @@ import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -27,9 +25,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
     /**
      * setting up variables of this class.
      */
-//    @Override
-    @BeforeEach
-    void setUp() {
+    void setUpMultiLevelGame() {
         multiLauncher = new MultiLevelLauncher();
         List<String> listOfLevels = new ArrayList<>();
         listOfLevels.add("/yellowLeaf.txt");
@@ -43,14 +39,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
         player = game.getPlayers().get(0);
     }
 
-    /**
-     * clean up after tests.
-     */
-//    @Override
-    @AfterEach
-    void tearDown() {
-        multiLauncher.dispose();
-    }
+
 
     /**
      * Overriding so that we will be able to test MultiLevelLauncher.
@@ -71,6 +60,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
     @Test
     @SuppressWarnings({"magicnumber", "methodlength"})
     void yellowLeafPathTest() {
+        setUpMultiLevelGame();
         // assert that we are on the state "First Time Launched GUI"
         checkFirstTimeLaunchedGuiState(multiLauncher);
 
@@ -108,9 +98,11 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
         assertThat(level.remainingPellets() != 0);
         assertThat(game.getCurrentLevelNumber() == 1).isTrue();
         Mockito.verify(game, Mockito.times(2)).start();
+
     }
 
     /**
+     * (this method is quite long because the last level has to be reached)
      * This is the test case written for the test that is derived from "blueLeaf" path.
      * version for a MultiGame.
      * this test case can use the file that is also used for the yellow path of MultiLevelGame.
@@ -121,6 +113,8 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
     @Test
     @SuppressWarnings({"magicnumber", "methodlength", "PMD.JUnitTestContainsTooManyAsserts"})
     void multilevelBlueLeafPathTest() {
+        setUpMultiLevelGame();
+
         // assert that we are on the state "First Time Launched GUI"
         checkFirstTimeLaunchedGuiState(multiLauncher);
 
@@ -198,5 +192,6 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // observing properties of at "Game" state are indeed true
         checkGameWonState(game);
+
     }
 }
