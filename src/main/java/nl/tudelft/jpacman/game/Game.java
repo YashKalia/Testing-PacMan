@@ -113,4 +113,16 @@ public abstract class Game implements LevelObserver {
     public void levelLost() {
         stop();
     }
+
+    /**
+     * tells us if last level is reached, increases observability for testing.
+     * @return true or false;
+     */
+    public abstract boolean lastLevelReached();
+
+    /**
+     * tells us if all levels are cleared, increases observability for testing.
+     * @return true or false;
+     */
+    public abstract boolean allLevelsWon();
 }

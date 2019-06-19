@@ -145,6 +145,25 @@ When  the player hits the "Start" button;
 Then  the game is resumed.
 ```
 
+#### Story 5 : Next Levels
+
+```
+As a player,
+ I want to be able to play a game with multiple levels;
+So  that I can spend more time on JPacMan.
+
+Scenario 5.1
+Given I have won a level of the game,
+and   the level that is won is not the last playable level;
+When  I click start/nextLevel
+Then  The next playable level will be available for starting
+
+Scenario 5.2
+Given I have won the the last level of the game;
+When  I click start button,
+Then  No new levels will be available for playing.
+```
+
 ## 3. User Interface
 
 The user interface for JPacman is relatively simple.  The game is
