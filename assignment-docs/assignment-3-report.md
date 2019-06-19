@@ -124,24 +124,6 @@ Given I have won the the last level of the game;
 When  I click start button,
 Then  No new levels will be available for playing.
 
-#### Story 5 : Next Levels
-
-```
-As a player,
- I want to be able to play a game with multiple levels;
-So  that I can spend more time on JPacMan.
-
-Scenario 5.1
-Given I have won a level of the game,
-and   the level that is won is not the last playable level;
-When  I click start/nextLevel
-Then  The next playable level will be available for starting
-
-Scenario 5.2
-Given I have won the the last level of the game;
-When  I click start button,
-Then  No new levels will be available for playing.
-```
 
 #### Exercise 11
 
@@ -149,13 +131,14 @@ The state machine model for multi-level game:
 
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589122447085797420/unknown.png">
 
-
 The transition tree for the state machine model above:
 
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589391515982233610/unknown.png">
 
 The new transition table will be the following :
+
 <img src = "https://cdn.discordapp.com/attachments/546025287939391508/589417542637060137/unknown.png">
+
 #### Exercise 12
 
 For easability of testing common behaviour of MultiLevelGame and SinglePlayerGame 
@@ -182,13 +165,19 @@ Find the specific test called "multilevelBlueLeafPathTest()"for MultiLevelGame i
 src\test\java\nl\tudelft\jpacman\game\MultiLevelGameAndLauncherTest.java
 
 
-Single player game will have the same transition table as the one in **exercise 11** but without the (state, event) pair
-(level won, start button clicked) this is a specific sneaky path test case for SinglePlayer Game but not for MultiLevelGame. (
-This test can be found the in test class with the following path : **TODO** )
-
 Due to the small changes in state machine model  the most of the empty cells (for sneaky path testing)
 in the transition table in exercise  11 will apply to both version of games
 , but **not** all. 
+
+Single player game will have the same transition table as the one in **exercise 11** but without the (state, event) pair
+(level won, start button clicked) this is a specific sneaky path test case for SinglePlayer Game but not for MultiLevelGame. (
+This specific test can be found the in test class with the following path : 
+src\test\java\nl\tudelft\jpacman\game\SinglePlayerGameAndLauncherTest.java )
+
+The sneaky path test involving State = Level Won and other events for MultiLevel differs from SinglePlayerGame 
+(because MultiLevel for (Level Won, start button) is possible whereas SinglePlayerGame doesn't)
+therefore MultiLevelGame has it's own sneaky path method that involves Level Won in :
+src\test\java\nl\tudelft\jpacman\game\MultiLevelGameAndLauncherTest.java
 
 #### Exercise 13 & 14
 You can verify that what is asked by this exercise is indeed done by taking a look at the 
@@ -203,24 +192,42 @@ The tests specific to MultiLevelGame can be found the in test class with the fol
 src\test\java\nl\tudelft\jpacman\game\MultiLevelGameAndLauncherTest.java
 
 #### Exercise 17
-Implementation in
-
-MultiLevelGame :
-
-MultiLevelLauncher :
-
-Game :
-
-SinglePlayerGame :
-
-GameFactory :
- createMultiLevelGame method
+Proof for the implementation that is asked
+is that the implemented test that involve multiLevelLauncher and MultiLevelGame pass.
+Furthermore the classes  multiLevelLauncher and MultiLevelGame can be inspected.
 
 #### Exercise 18
 
+intelliJ "tracing option coverage report" for multiLevelLauncher class:
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/590960184218877954/unknown.png">
+
+intelliJ "tracing option coverage report" for multiLevelGame class:
+<img src = "https://cdn.discordapp.com/attachments/546026199197941775/590960381539778610/unknown.png">
+
+seeing the coverage percentages (method, line, class, branch) of the multilevel code they are satisfactory :
+100% for most of them, 85%, 95% for others. exeception : 42 % branch coverage for multilevel game class (I dont understand
+this there is only one if-statement in that class so how can there even be 7 branches).
+However from the lectures we have learned : Exhaustive testing is impossible and that we must maximize information gain
+while minimizing cost of designing tests. Maybe the information gained  100% branch coverage fo multilevel game class 
+will not be  worth it compared to the cost of making test for increasing branch coverage
 
 #### Exercise 19
 
+3 good things :
 
-#### Exercise 20
+- we have used parallel test hierarchy which is very good for not repeating code
+- we have added some methods that increase observability which eases testing e.g allLevelsWon(), lastLevelReached() etc.
+- we have a relatively high coverage percentage compared to when  we first got the repository of JPacMan which means that
+  debugging in the future in case of failures will be much easier 
+
+3 bad things :
+
+- My lab partner almost didn't even contribute eat all so the solution aren't "diverse" and only gives the perspective 
+  of how I think. 
+  Alternative: find a lab partner that actually works. 
+- There tests in Game and Launcher test class are long-ish Solution  : make some general methods 
+  that contain assertions that are used often.  
+- The pacmanUi doesn't actually show the change of boards when we go to the next level for MultiLevelGame.
+  I asked a TA , the TA said that it isn't necessary. Solution : adapt the UI for MultiLevelGame if I want to 
+  in my free time. 
 

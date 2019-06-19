@@ -70,11 +70,4 @@ public class MultiLevelLauncher extends Launcher {
         return this;
     }
 
-    /**
-     * launch main.
-     * @param args empty.
-     */
-    public static void main(String[] args) {
-        new MultiLevelLauncher().launch();
-    }
 }
