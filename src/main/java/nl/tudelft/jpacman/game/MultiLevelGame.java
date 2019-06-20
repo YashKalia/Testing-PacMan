@@ -93,6 +93,12 @@ public class MultiLevelGame extends Game {
         return level;
     }
 
+    @Override
+    public void levelWon() {
+        stop();
+        this.goToNextLevel();
+    }
+
     /**
      * the current level number.
      * @return number of level;

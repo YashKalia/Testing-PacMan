@@ -73,24 +73,43 @@ each with different implementations of nextAIMove() which further decreases our
 <img src = "https://cdn.discordapp.com/attachments/546026199197941775/589124840091549713/unknown.png">
 
 Test cases for (state, event) pairs not in the transition table above :
+
 1. (Actually playing the game, Start button clicked)
+
 2. (First time launched GUI, Stop button clicked)
+
 3. (First time launched GUI, Press arrow key)
+
 4. (First time launched GUI, Player eats last pellet)
+
 5. (First time launched GUI, Collision with a ghost)
+
 6. (Paused State, Stop button clicked)
+
 7. (Paused State, Press arrow key)
+
 8. (Paused State, Player eats last pellet)
+
 9. (Paused State, Collision with a ghost)
+
 10. (Game Lost, Start button clicked)
+
 11. (Game Lost, Stop button clicked)
+
 12. (Game Lost, Press arrow key)
+
 13. (Game Lost, Player eats last pellet)
+
 14. (Game Lost, Collision with a ghost)
+
 15. (Game Won, Start button clicked)
+
 16. (Game Won, Stop button clicked)
+
 17. (Game Won, Press arrow key)
+
 18. (Game Won, Player eats last pellet)
+
 19. (Game Won, Collision with a ghost)
 
 All of the state event pairs above are good for different sneaky path test cases.
@@ -222,9 +241,10 @@ will not be  worth it compared to the cost of making test for increasing branch 
 
 3 bad things :
 
-- My lab partner almost didn't even contribute eat all so the solution aren't "diverse" and only gives the perspective 
-  of how I think. 
-  Alternative: find a lab partner that actually works. 
+- Some of the name of my tests do not make clear at first glance what the test exercises. Specifically for the transition 
+  tree tests because I didn't know how to call tests that belong to a certain path to the leaf. 
+  Although I did add lengthy Java Docs to explain it, the reviewer might have to first read the report to understand the test.
+  Alternative : come up with more self explanatory test names. 
 - There tests in Game and Launcher test class are long-ish Solution  : make some general methods 
   that contain assertions that are used often.  
 - The pacmanUi doesn't actually show the change of boards when we go to the next level for MultiLevelGame.

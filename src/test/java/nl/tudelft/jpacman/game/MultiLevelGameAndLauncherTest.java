@@ -88,7 +88,6 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // player clicking start button will transition "Level Won"
         // to "Actually Playing the Game / Not Paused"
-        game.goToNextLevel();
         game.start();
         level = game.getLevel();
 
@@ -142,7 +141,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // player clicking start button will transition "Level Won"
         // to "Actually Playing the Game / Not Paused"
-        game.goToNextLevel();
+//        game.goToNextLevel();
         game.start();
         level = game.getLevel();
 
@@ -166,7 +165,7 @@ public class MultiLevelGameAndLauncherTest extends GameAndLauncherTest {
 
         // player clicking start button will transition "Level Won"
         // to "Actually Playing the Game / Not Paused"
-        game.goToNextLevel();
+//        game.goToNextLevel();
         game.start();
         level = game.getLevel();
 
